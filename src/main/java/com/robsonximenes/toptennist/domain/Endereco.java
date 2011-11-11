@@ -1,10 +1,14 @@
 package com.robsonximenes.toptennist.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable{
+	
+	private static final long serialVersionUID = 6565241222535783957L;
 
 	@Column
 	private String logradouro;

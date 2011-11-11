@@ -12,10 +12,21 @@
 	<table style="width: 100%">
 		<tr>
 			<td height="70" width="5%" align="left"><a href="index.jsf"><img src="images/logo.png" border="0" /></a></td>
-			<td height="70" width="95%" align="left"><p:themeSwitcher initialText="Change Skin" buttonPreText="Skin: " /></td>
+			<td height="70" width="95%" align="right"><h:form>
+
+				<p:commandButton id="dynaButton" value="#{usarioMB.bean.login}" type="button" />
+				<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
+					<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk"/>
+					<p:menuitem value="#{messages['usuario.sair.label']}" icon="ui-icon ui-icon-arrowrefresh-1-w" />
+				</p:menu>
+			</h:form></td>
 		</tr>
-		<tr>
+		<!--<tr>
 			<td height="20" colspan="2"><ui:include src="/menu.xhtml" /></td>
+		</tr>
+		-->
+		<tr valign="top">
+			<td height="20" colspan="2"></td>
 		</tr>
 		<tr valign="top">
 			<td height="400" colspan="2"><ui:insert name="body" /></td>
