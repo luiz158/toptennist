@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #ddd;
+}
+
+#container {
+	margin: 1em auto;
+	width: 980px;
+	background: #FFF;
+}
+
+#header {
+	background: #1E1E6D;
+	height: 100px;
+}
+
+#mid {
+	height: 480px;
+}
+
+#logo {
+	float: left;
+	height: 100px;
+	width: 165px;
+	vertical-align: middle;
+}
+
+#login {
+	float: left;
+	height: 100px;
+	text-align: left;
+	vertical-align: bottom;
+	display: inline;
+}
+
+#esquerda {
+	float: left;
+	width: 165px;
+	height: 400px;
+	display: inline;
+}
+
+#content {
+	float: left;
+	min-width: 600px;
+	height: 400px;
+	background: #FFF;
+	margin: 0 0 0 20px;
+	display: inline;
+}
+
+#footer {
+	clear: both;
+	background: #1E1E6D;
+	height: 60px;
+}
+
+#toolbar {
+	height: 60px;
+}
+
+#body {
+	
+}
