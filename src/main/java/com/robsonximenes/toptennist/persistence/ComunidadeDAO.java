@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
-import com.robsonximenes.toptennist.domain.Bookmark;
+import com.robsonximenes.toptennist.domain.Comunidade;
 
 @PersistenceController
-public class BookmarkDAO extends JPACrud<Bookmark, Long> {
+public class ComunidadeDAO extends JPACrud<Comunidade, Long> {
 	
 	private static final long serialVersionUID = 1L;
 	
