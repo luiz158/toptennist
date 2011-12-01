@@ -10,13 +10,13 @@
 		<class>com.robsonximenes.toptennist.domain.Usuario</class>
 		<class>com.robsonximenes.toptennist.domain.Atleta</class>
 		<class>com.robsonximenes.toptennist.domain.Comunidade</class>
-		<class>com.robsonximenes.toptennist.domain.MatriculaComunidade</class>
+		<class>com.robsonximenes.toptennist.domain.Matricula</class>
 		<class>com.robsonximenes.toptennist.domain.Telefone</class>
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="false" />
-			<property name="hibernate.hbm2ddl.auto" value="create-update" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 		</properties>
 	</persistence-unit>

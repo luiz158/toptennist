@@ -13,18 +13,30 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "comunidade_atleta")
+@Table
 @AssociationOverrides({ @AssociationOverride(name = "pk.comunidade", joinColumns = @JoinColumn(name = "comunidade_id")),
 		@AssociationOverride(name = "pk.atleta", joinColumns = @JoinColumn(name = "atleta_id")) })
-public class MatriculaComunidade {
+public class Matricula {
 
 	@EmbeddedId
-	private MatriculaComunidadePK pk = new MatriculaComunidadePK();
+	private MatriculaPK pk = new MatriculaPK();
+	
+	private String codigo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro;
+	private Date dataCadastro;	
 	
+	public String getCodigo() {
+		return codigo;
+	}
+
+
 	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
@@ -52,11 +64,11 @@ public class MatriculaComunidade {
         getPk().setAtleta(atleta);
     }
 
-	public void setPk(MatriculaComunidadePK pk) {
+	public void setPk(MatriculaPK pk) {
 		this.pk = pk;
 	}
 
-	public MatriculaComunidadePK getPk() {
+	public MatriculaPK getPk() {
 		return pk;
 	}
 

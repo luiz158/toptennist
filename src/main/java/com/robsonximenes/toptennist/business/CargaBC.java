@@ -14,7 +14,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 import com.robsonximenes.toptennist.domain.Atleta;
 import com.robsonximenes.toptennist.domain.Comunidade;
 import com.robsonximenes.toptennist.domain.Endereco;
-import com.robsonximenes.toptennist.domain.MatriculaComunidade;
+import com.robsonximenes.toptennist.domain.Matricula;
 import com.robsonximenes.toptennist.domain.Telefone;
 import com.robsonximenes.toptennist.domain.Usuario;
 import com.robsonximenes.toptennist.persistence.AtletaDAO;
@@ -43,7 +43,7 @@ public class CargaBC {
 		Usuario userADM = new Usuario();
 		userADM.setEmail("ADM@gmail.com");
 		userADM.setEndereco(new Endereco());
-		userADM.getEndereco().setCep(82546010549L);
+		userADM.getEndereco().setCep("04011060");
 		userADM.getEndereco().setComplemento("numero 228, ap 95");
 		userADM.getEndereco().setLogradouro("Rua jose antonio coelho");
 		userADM.setLogin("adm");
@@ -51,7 +51,7 @@ public class CargaBC {
 		userADM.setTelefones(new ArrayList<Telefone>());
 		Telefone tel = new Telefone();
 		tel.setDdd(11);
-		tel.setNumero(99579907);
+		tel.setNumero(99579907L);
 		userADM.getTelefones().add(tel);		
 		usuarioDAO.insert(userADM);
 		
@@ -66,10 +66,10 @@ public class CargaBC {
 		
 		
 		logger.debug("Inserindo usuario");		
-		Usuario user = new Usuario();
+		Atleta user = new Atleta();
 		user.setEmail("robsonximenes@gmail.com");
 		user.setEndereco(new Endereco());
-		user.getEndereco().setCep(82546010549L);
+		user.getEndereco().setCep("04011060");
 		user.getEndereco().setComplemento("numero 228, ap 95");
 		user.getEndereco().setLogradouro("Rua jose antonio coelho");
 		user.setLogin("robsonximenes");
@@ -77,27 +77,24 @@ public class CargaBC {
 		user.setTelefones(new ArrayList<Telefone>());
 		Telefone t = new Telefone();
 		t.setDdd(11);
-		t.setNumero(99579907);
-		user.getTelefones().add(t);		
-		usuarioDAO.insert(user);
-		
-		logger.debug("Transformando usuario em atleta");
-		Atleta atleta = (Atleta)user;	
-		atleta.setAltura(1.75);
-		atleta.setClube("Costa verde");
-		atleta.setHistoria("blablablabal blabalbalba blablabalba blababalba");
-		atleta.setIdolo("Agassi");
-		atletaDAO.insert(atleta);
+		t.setNumero(99579907L);
+		user.getTelefones().add(t);	
+		user.setAltura(1.75);
+		user.setClube("Costa verde");
+		user.setHistoria("blablablabal blabalbalba blablabalba blababalba");
+		user.setIdolo("Agassi");
+		atletaDAO.insert(user);
 		
 		logger.debug("Matriculando usuario em comunidade");
-		MatriculaComunidade matricula = new MatriculaComunidade();
+		Matricula matricula = new Matricula();
 		matricula.setComunidade(comunidade);
-		matricula.setAtleta(atleta);
+		matricula.setAtleta(user);
 		matricula.setDataCadastro(new Date());
-		atleta.getComunidade().add(matricula);
-		atletaDAO.update(atleta);
+		user.getComunidade().add(matricula);
+		atletaDAO.update(user);
 		
 		
+		logger.debug("MODELAGEM OK!");
 		
 	}
 	

@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class MatriculaComunidadePK implements Serializable {
+public class MatriculaPK implements Serializable {
 
 	private static final long serialVersionUID = 4594635953301535610L;
 
@@ -38,7 +38,7 @@ public class MatriculaComunidadePK implements Serializable {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		MatriculaComunidadePK that = (MatriculaComunidadePK) o;
+		MatriculaPK that = (MatriculaPK) o;
 
 		if (comunidade != null ? !comunidade.equals(that.comunidade) : that.comunidade != null)
 			return false;

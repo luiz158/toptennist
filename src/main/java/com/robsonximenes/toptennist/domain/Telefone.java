@@ -20,7 +20,7 @@ public class Telefone implements Serializable {
 	private Integer ddd;
 
 	@Column
-	private Integer numero;
+	private Long numero;
 
 	public Long getId() {
 		return id;
@@ -38,11 +38,11 @@ public class Telefone implements Serializable {
 		this.ddd = ddd;
 	}
 
-	public Integer getNumero() {
+	public Long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(Long numero) {
 		this.numero = numero;
 	}
 

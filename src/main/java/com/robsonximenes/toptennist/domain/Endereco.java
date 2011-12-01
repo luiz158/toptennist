@@ -17,7 +17,7 @@ public class Endereco implements Serializable{
 	private String complemento;
 	
 	@Column
-	private Long cep;
+	private String cep;
 
 	
 	public String getLogradouro() {
@@ -40,12 +40,12 @@ public class Endereco implements Serializable{
 	}
 
 	
-	public Long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
 	
-	public void setCep(Long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	

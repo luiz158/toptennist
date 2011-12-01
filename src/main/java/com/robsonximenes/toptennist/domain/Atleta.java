@@ -7,8 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 public class Atleta extends Usuario {
 
 	public enum Lateralidade {
@@ -36,13 +38,13 @@ public class Atleta extends Usuario {
 	private String idolo;
 
 	@OneToMany(mappedBy = "pk.atleta", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<MatriculaComunidade> comunidade = new ArrayList<MatriculaComunidade>();
+	private List<Matricula> comunidade = new ArrayList<Matricula>();
 
-	public List<MatriculaComunidade> getComunidade() {
+	public List<Matricula> getComunidade() {
 		return comunidade;
 	}
 
-	public void setComunidade(List<MatriculaComunidade> comunidade) {
+	public void setComunidade(List<Matricula> comunidade) {
 		this.comunidade = comunidade;
 	}
 

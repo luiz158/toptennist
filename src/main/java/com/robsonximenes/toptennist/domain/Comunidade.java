@@ -42,7 +42,7 @@ public class Comunidade implements Serializable {
 	private List<Telefone> telefones;
 
 	@OneToMany(mappedBy = "pk.comunidade", fetch=FetchType.LAZY, cascade= {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<MatriculaComunidade> atletas = new ArrayList<MatriculaComunidade>();
+	private List<Matricula> atletas = new ArrayList<Matricula>();
 
 	
 	public Long getId() {
@@ -95,12 +95,12 @@ public class Comunidade implements Serializable {
 	}
 
 	
-	public List<MatriculaComunidade> getAtletas() {
+	public List<Matricula> getAtletas() {
 		return atletas;
 	}
 
 	
-	public void setAtletas(List<MatriculaComunidade> atletas) {
+	public void setAtletas(List<Matricula> atletas) {
 		this.atletas = atletas;
 	}
 
