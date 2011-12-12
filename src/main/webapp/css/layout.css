@@ -16,10 +16,14 @@ body {
 #header {
 	background: #1E1E6D;
 	height: 60px;
+	width:auto;	
+	display: block;
+	clear: both;
 }
 
 #mid {
 	height: 480px;
+	width:auto;
 }
 
 #logo {
@@ -39,17 +43,20 @@ body {
 
 #esquerda {
 	float: left;
+	display: block;
 	width: 165px;
-	height: 400px;
-	display: inline;
+	height: 100%;
+	margin: 0;
+	background: #1E1FFF;
+	
 }
 
 #content {
 	float: left;
-	min-width: 600px;
-	height: 400px;
 	background: #FFF;
-	margin: 0 0 0 20px;
+	height: 100%;
+	float: left;	
+	color:#1E1E6D;
 	display: inline;
 }
 
@@ -63,6 +70,7 @@ body {
 
 #toolbar {
 	height: 60px;
+	background: #1FFFFF;
 }
 
 #body {

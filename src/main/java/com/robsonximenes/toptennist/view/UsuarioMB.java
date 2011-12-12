@@ -54,10 +54,7 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	
 	public String logar() {
 		logado = dao.verificar(getBean());
-		if(logado==null) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Falha no login, verifique usuario e senha."));
-		}
-		return null;
+		return "/home";
 	}
 	
 	public String registrar() {		

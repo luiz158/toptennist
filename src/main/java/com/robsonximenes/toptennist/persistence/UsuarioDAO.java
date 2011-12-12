@@ -11,6 +11,7 @@ import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
 import com.robsonximenes.toptennist.domain.Usuario;
+import com.robsonximenes.toptennist.exception.FalhaNoLoginException;
 
 @PersistenceController
 public class UsuarioDAO extends JPACrud<Usuario, Long> {
@@ -26,9 +27,11 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 		query.setParameter("pEmail", usuario.getEmail());
 		query.setParameter("pSenha", usuario.getSenha());
 		List<Usuario> result = query.getResultList();		
-		usuario = null;
-		if(!result.isEmpty())
-			usuario = result.get(0);
+		
+		if(result.isEmpty())
+			throw new FalhaNoLoginException();
+		
+		usuario = result.get(0);
 		return usuario;
 	}
 
