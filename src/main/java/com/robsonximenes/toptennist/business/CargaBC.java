@@ -46,7 +46,7 @@ public class CargaBC {
 		userADM.getEndereco().setCep("04011060");
 		userADM.getEndereco().setComplemento("numero 228, ap 95");
 		userADM.getEndereco().setLogradouro("Rua jose antonio coelho");
-		userADM.setLogin("adm");
+//		userADM.setLogin("adm");
 		userADM.setSenha("1234");
 		userADM.setTelefones(new ArrayList<Telefone>());
 		Telefone tel = new Telefone();
@@ -72,7 +72,7 @@ public class CargaBC {
 		user.getEndereco().setCep("04011060");
 		user.getEndereco().setComplemento("numero 228, ap 95");
 		user.getEndereco().setLogradouro("Rua jose antonio coelho");
-		user.setLogin("robsonximenes");
+//		user.setLogin("robsonximenes");
 		user.setSenha("1234");
 		user.setTelefones(new ArrayList<Telefone>());
 		Telefone t = new Telefone();

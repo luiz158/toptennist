@@ -22,8 +22,8 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 	private Logger logger;
 
 	public Usuario verificar(Usuario usuario) {
-		Query query = getEntityManager().createQuery("from Usuario u where u.login = :pLogin and u.senha = :pSenha");
-		query.setParameter("pLogin", usuario.getLogin());
+		Query query = getEntityManager().createQuery("from Usuario u where u.email = :pEmail and u.senha = :pSenha");
+		query.setParameter("pEmail", usuario.getEmail());
 		query.setParameter("pSenha", usuario.getSenha());
 		List<Usuario> result = query.getResultList();		
 		usuario = null;

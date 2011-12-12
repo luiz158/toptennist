@@ -12,18 +12,21 @@
 			
 			<p:panel>
 				<h:form>
-					<h:panelGrid columns="2" rendered="#{usuarioMB.logado == null}">
-						<h:selectBooleanCheckbox label="lembrar" value="#{usuarioMB.lembrar}" />
+					<h:panelGrid columns="2">
 						
-						<h:commandLink value="Esqueceu a senha?" action="#{usuarioMB.logar}">
-						</h:commandLink>
-					
-					
-						<h:inputText id="login" value="#{usuarioMB.bean.login }"  size="20"/>
-					
-						<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}" size="20"/>
-					
-						<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
+						<h:outputLabel value="E-mail" for="login"/>					
+						<h:inputText id="login" value="#{usuarioMB.bean.email}" />
+						
+						<h:outputLabel value="Senha" for="senha"/>
+						<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}"/>
+						
+						<h:outputLabel value="Nome" for="nome"/>					
+						<h:inputText id="nome" value="#{usuarioMB.bean.nome }" />
+						
+						<h:outputLabel value="Aniversário" for="dataNascimento"/>
+						<p:calendar id="dataNascimento" value="#{usuarioMB.bean.dataNascimento}"/>						
+						
+						<h:commandButton action="#{usuarioMB.registrar}" value="Registrar" />
 					</h:panelGrid>
 				</h:form>
 			</p:panel>

@@ -31,7 +31,7 @@
 					
 						<h:outputText value="  " />
 					
-						<h:inputText id="login" value="#{usuarioMB.bean.login }"  size="20"/>
+						<h:inputText id="login" value="#{usuarioMB.bean.email }"  size="20"/>
 					
 						<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}" size="20"/>
 					
@@ -39,10 +39,12 @@
 					</h:panelGrid>
 	
 					<h:panelGroup rendered="#{usuarioMB.logado != null}">
-						<p:commandButton id="dynaButton" value="#{usuarioMB.logado.login}" type="button" />
+						<p:commandButton id="dynaButton" value="#{usuarioMB.logado.nome}" type="button" />
 						<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
 							<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk" />
-							<p:menuitem value="#{messages['usuario.sair.label']}" icon="ui-icon ui-icon-arrowrefresh-1-w" />
+							<p:menuitem value="#{messages['usuario.sair.label']}" 
+							action="#{usuarioMB.deslogar}"
+							icon="ui-icon ui-icon-arrowrefresh-1-w" />
 						</p:menu>
 					</h:panelGroup>
 				</h:form>

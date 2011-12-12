@@ -1,6 +1,7 @@
 package com.robsonximenes.toptennist.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,25 +15,37 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
 
+	enum Sexo{MASCULINO, FEMININO};
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column
-	private String login;
-
+	
 	@Column
 	private String senha;
 
 	@Column
 	private String email;
+	
+	@Column
+	private String nome;
+	
+	@Temporal(TemporalType.DATE)
+	@Column
+	private Date dataNascimento;
+	
+	@Column
+	private Sexo sexo;
 
 	@Embedded
 	private Endereco endereco = new Endereco();
@@ -47,14 +60,6 @@ public class Usuario implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getSenha() {
@@ -87,6 +92,36 @@ public class Usuario implements Serializable {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+	
+	public String getNome() {
+		return nome;
+	}
+
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
 	}
 
 }
