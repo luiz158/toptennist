@@ -8,48 +8,71 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="author" content="Robson Saraiva Ximenes" />
 	<meta name="keywords" content="Tenis, Tennis, Tennis Player, Tenista, Ranking, Torneios" />
-	<meta name="description" content="Sitema para criação de rankings, torneios e comunidades de tenistas." />	
+	<meta name="description" content="Sitema para criação de rankings, torneios e comunidades de tenistas." />
 	<meta name="robots" content="all" />
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 </h:head>
 <h:body id="corpo">
 	<div id="container">
-		<div id="header">
-			<ui:insert name="cabecalho">
-				<div id="logo"><a href="index.jsf"><img src="images/logo.png" border="0" /></a></div>
-				<div id="login">
-					<h:form>
-						<p:commandButton id="dynaButton" value="#{usarioMB.bean.login}" type="button" />
+	<div id="header">
+		<ui:insert name="cabecalho">
+			<div id="logo">
+				<a href="index.jsf">
+					<img src="images/logo.png" border="0" />
+				</a>
+			</div>
+			<div id="login">
+				<h:form>
+					<h:panelGrid columns="3" rendered="#{usuarioMB.logado == null}">
+						<h:selectBooleanCheckbox label="lembrar" value="#{usuarioMB.lembrar}" />
+						
+						<h:commandLink value="Esqueceu a senha?" action="#{usuarioMB.logar}">
+						</h:commandLink>
+					
+						<h:outputText value="  " />
+					
+						<h:inputText id="login" value="#{usuarioMB.bean.login }"  size="20"/>
+					
+						<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}" size="20"/>
+					
+						<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
+					</h:panelGrid>
+	
+					<h:panelGroup rendered="#{usuarioMB.logado != null}">
+						<p:commandButton id="dynaButton" value="#{usuarioMB.logado.login}" type="button" />
 						<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
-							<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk"/>
+							<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk" />
 							<p:menuitem value="#{messages['usuario.sair.label']}" icon="ui-icon ui-icon-arrowrefresh-1-w" />
 						</p:menu>
-					</h:form>
+					</h:panelGroup>
+				</h:form>
+			</div>
+		</ui:insert>
+	</div>
+	<div id="mid">
+		<ui:insert name="centro">
+			<ui:insert name="noesqueda">
+				<div id="esquerda">
+					<ui:insert name="esquerda" />
 				</div>
 			</ui:insert>
-		</div>
-		<div id="mid">
-			<ui:insert name="centro">
-				<ui:insert name="noesqueda">
-					<div id="esquerda">
-						<ui:insert name="esquerda" />
+			<div id="content">
+				<ui:insert name="notoolbar">
+					<div id="toolbar">
+						<ui:insert name="toolbar" />
 					</div>
 				</ui:insert>
-				<div id="content">
-					<ui:insert name="notoolbar">
-						<div id="toolbar"><ui:insert name="toolbar" /></div>
-					</ui:insert>
-					<div id="body"><ui:insert name="body" /></div>			
+				<div id="body">
+					<ui:insert name="body" />
 				</div>
-			</ui:insert>
-		</div>
-		<div id="footer">
-			<ui:insert name="footer">
-				#{messages['main.footer.text']}
-			</ui:insert>
-		</div>		
+			</div>
+		</ui:insert>
 	</div>
-	
+	<div id="footer"><ui:insert name="footer">
+				#{messages['main.footer.text']}
+			</ui:insert></div>
+	</div>
+
 	<p:growl id="messages" globalOnly="true" />
 
 	<p:ajaxStatus style="width:16px;height:16px;">
@@ -61,6 +84,6 @@
 		</f:facet>
 	</p:ajaxStatus>
 	<link type="text/css" rel="stylesheet" href="css/aristo/skin.css" />
-	
+
 </h:body>
 </html>
