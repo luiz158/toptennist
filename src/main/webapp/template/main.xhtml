@@ -5,39 +5,41 @@
 
 <h:head>
 	<title>#{messages['main.app.title']}</title>
-	<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Robson Saraiva Ximenes" />
+	<meta name="keywords" content="Tênis, Tennis, Tennis Player, Tenista, Ranking, Torneios, Rede Social, Comunidade, tenistas, federação, scores, resultados" />
+	<meta name="description" content="Sitema para criação de rankings, torneios e comunidades de tenistas." />
+	<meta name="robots" content="all" />
+	<link rel="stylesheet" href="css/layout1.css" type="text/css" media="screen" />
 </h:head>
-
-<h:body style="background-color:#f1f1f1">
-	<table style="width: 100%">
-		<tr>
-			<td height="70" width="5%" align="left"><a href="index.jsf"><img src="images/logo.png" border="0" /></a></td>
-			<td height="70" width="95%" align="right"><h:form>
-
-				<p:commandButton id="dynaButton" value="#{usarioMB.bean.login}" type="button" />
-				<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
-					<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk"/>
-					<p:menuitem value="#{messages['usuario.sair.label']}" icon="ui-icon ui-icon-arrowrefresh-1-w" />
-				</p:menu>
-			</h:form></td>
-		</tr>
-		<!--<tr>
-			<td height="20" colspan="2"><ui:include src="/menu.xhtml" /></td>
-		</tr>
-		-->
-		<tr valign="top">
-			<td height="20" colspan="2"></td>
-		</tr>
-		<tr valign="top">
-			<td height="400" colspan="2"><ui:insert name="body" /></td>
-		</tr>
-		<tr align="center">
-			<td height="20" colspan="2" align="center" class="text-input">#{messages['main.footer.text']}</td>
-		</tr>
-	</table>
-
+<h:body id="corpo">
+	<div id="container">
+		<div id="header">
+			<ui:insert name="header" />
+		</div>
+		<div id="main">
+			<ui:insert name="no_menu">
+				<div id="menu"><ui:insert name="menu" /></div>
+			</ui:insert> 
+	        <div id="content">
+	        	<ui:insert name="content"> 
+	            	<div id="content-left">
+	            		<ui:insert name="content-left">
+	            			<div id="content-left-toolbar"><ui:insert name="content-left-toolbar"/></div>
+	            			<div id="content-left-main"><ui:insert name="content-left-main"/></div>	            			
+	            		</ui:insert>
+	            	</div>	            	
+	            </ui:insert> 
+	        </div> 
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+					#{messages['main.footer.text']}
+			</ui:insert>
+		</div>
+	</div>
+	
 	<p:growl id="messages" globalOnly="true" />
-
 	<p:ajaxStatus style="width:16px;height:16px;">
 		<f:facet name="start">
 		</f:facet>
@@ -47,5 +49,6 @@
 		</f:facet>
 	</p:ajaxStatus>
 	<link type="text/css" rel="stylesheet" href="css/aristo/skin.css" />
+
 </h:body>
 </html>
