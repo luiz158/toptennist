@@ -1,6 +1,7 @@
 package com.robsonximenes.toptennist.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,22 +9,20 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
 
-	enum Sexo{MASCULINO, FEMININO};
-	
+	enum Sexo{MASCULINO, FEMININO};	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -53,6 +52,31 @@ public class Usuario implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_telefone")
 	private List<Telefone> telefones;
+	
+	public enum Lateralidade {
+		DESTRO, CANHOTO
+	};
+
+	private Double altura;
+
+	private Double peso;
+
+	private Lateralidade lateralidade;
+
+	private Integer idadeInicioTenis;
+
+	private Integer idadeInicioProfissional;
+
+	private String clube;
+
+	private String historia;
+
+	private String raquete;
+
+	private String idolo;
+
+	@OneToMany(mappedBy = "pk.atleta", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Matricula> comunidade = new ArrayList<Matricula>();
 
 	public Long getId() {
 		return id;
@@ -122,6 +146,106 @@ public class Usuario implements Serializable {
 	
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
+	}
+
+	
+	public Double getAltura() {
+		return altura;
+	}
+
+	
+	public void setAltura(Double altura) {
+		this.altura = altura;
+	}
+
+	
+	public Double getPeso() {
+		return peso;
+	}
+
+	
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
+
+	
+	public Lateralidade getLateralidade() {
+		return lateralidade;
+	}
+
+	
+	public void setLateralidade(Lateralidade lateralidade) {
+		this.lateralidade = lateralidade;
+	}
+
+	
+	public Integer getIdadeInicioTenis() {
+		return idadeInicioTenis;
+	}
+
+	
+	public void setIdadeInicioTenis(Integer idadeInicioTenis) {
+		this.idadeInicioTenis = idadeInicioTenis;
+	}
+
+	
+	public Integer getIdadeInicioProfissional() {
+		return idadeInicioProfissional;
+	}
+
+	
+	public void setIdadeInicioProfissional(Integer idadeInicioProfissional) {
+		this.idadeInicioProfissional = idadeInicioProfissional;
+	}
+
+	
+	public String getClube() {
+		return clube;
+	}
+
+	
+	public void setClube(String clube) {
+		this.clube = clube;
+	}
+
+	
+	public String getHistoria() {
+		return historia;
+	}
+
+	
+	public void setHistoria(String historia) {
+		this.historia = historia;
+	}
+
+	
+	public String getRaquete() {
+		return raquete;
+	}
+
+	
+	public void setRaquete(String raquete) {
+		this.raquete = raquete;
+	}
+
+	
+	public String getIdolo() {
+		return idolo;
+	}
+
+	
+	public void setIdolo(String idolo) {
+		this.idolo = idolo;
+	}
+
+	
+	public List<Matricula> getComunidade() {
+		return comunidade;
+	}
+
+	
+	public void setComunidade(List<Matricula> comunidade) {
+		this.comunidade = comunidade;
 	}
 
 }

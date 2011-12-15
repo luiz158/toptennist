@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/layout.xhtml">
+	
+	<ui:define name="menu">
+		<h:form>
+			<div id="perfil">
+				<h:panelGrid columns="2" cellpadding="2">  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="90px" height="120px;"/> 
+				        <h:panelGrid>
+				        	<h:outputText value="#{usuarioMB.bean.nome}" />
+				        	<h:commandLink value="Perfil" action="/usuario_perfil.jsf"/>
+				        </h:panelGrid>  
+				</h:panelGrid> 
+				<h:panelGrid columns="1">
+					<h:commandLink value="Histórico" action="#{comunidadeMB.criarNovaComunidade}"/>
+					<h:commandLink value="Próximos jogos" action="#{comunidadeMB.criarNovaComunidade}"/>				
+					<h:commandLink value="Procurar torneios" action="#{comunidadeMB.criarNovaComunidade}"/>
+				</h:panelGrid>				
+			</div>
+			
+			<div id="comunidades">
+				<h3>Comunidades</h3>
+				<h:panelGrid columns="2" cellpadding="2">  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="10px" height="10px;"/>  
+				        <h:outputText value="nome da comunidade" />
+				</h:panelGrid> 
+				<h:commandLink value="Criar comunidade" action="#{comunidadeMB.criarNovaComunidade}"/>
+			</div>
+			
+			<div id="amigos">
+				<h3>Amigos</h3>
+				<h:panelGrid columns="3" cellpadding="2" >  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="20px" height="20px;"/>  
+				        <h:outputText value="nome" />  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="10px" height="10px;"/> 
+				        	
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="20px" height="20px;"/>  
+				        <h:outputText value="nome" />  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="10px" height="10px;"/> 
+				        
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="20px" height="20px;"/>  
+				        <h:outputText value="nome" />  
+				        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="10px" height="10px;"/> 
+				</h:panelGrid> 
+			</div>
+		</h:form>
+	</ui:define>
+	
+	
+</ui:composition>

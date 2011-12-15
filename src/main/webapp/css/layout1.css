@@ -7,11 +7,13 @@ container {
     background:#fff;
 }
 #container {
-    width:90%;
-    min-height: 400px;
-    margin:0 auto;
     background:#FFFFFF;
     display: block;
+    margin: 0 auto; /* centrar o layout horizontalmente */
+	width: auto; /* vamos utilizar auto ou qualquer percentagem, para garantir que utilizamos o tamanho da janela do browser automaticamente */
+	min-width: 760px; /* definimos uma largura mínima para o nosso container */
+	max-width: 90em; /* é prática comum utilizar valores em, de modo a que a largura do texto se mantenha constante às várias resoluções do ecrã*/
+	min-height: 400px;    
 }
 #header {
 	height: 45px;
@@ -20,39 +22,20 @@ container {
 }
 #menu {
     float:left;
+    display: inline;
 	width:200px;
-	height: 95%;
-    background:#bbb;
+	min-height: 400px;
 	padding:10px;
 }
 #content {
+	min-width: 400px;
+	min-height: 400px;
     width: auto;
-    height: 95%; 
     background:#FFFFFF;   
     text-align: justify;
     display: block;
 }
-#content-left {
-    float:left;
-    width: auto;
-    height: 100%;
-    background:#ddf;
-    display: inline;
-}
-#content-left-main {
-	text-align: justify;
-}
-#content-left-toolbar {
-	height: 60px;
-	background: #1FFFFF;
-}
 
-#content-right {
-    float:right;
-    width:150px;
-    height: 95%;
-    background:#dff;
-}
 
 #footer {
     clear:both;
@@ -72,3 +55,7 @@ container {
 	vertical-align: middle;
 }
 
+
+h1 { font-size:22px; line-height:18px; margin-bottom:10px; }
+h2 { font-size:16px; line-height:18px; margin-bottom:10px;}
+h3 { font-size:14px; line-height:18px; margin-bottom:5px;}

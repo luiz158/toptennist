@@ -11,13 +11,11 @@ import br.gov.frameworkdemoiselle.annotation.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-import com.robsonximenes.toptennist.domain.Atleta;
 import com.robsonximenes.toptennist.domain.Comunidade;
 import com.robsonximenes.toptennist.domain.Endereco;
 import com.robsonximenes.toptennist.domain.Matricula;
 import com.robsonximenes.toptennist.domain.Telefone;
 import com.robsonximenes.toptennist.domain.Usuario;
-import com.robsonximenes.toptennist.persistence.AtletaDAO;
 import com.robsonximenes.toptennist.persistence.ComunidadeDAO;
 import com.robsonximenes.toptennist.persistence.UsuarioDAO;
 
@@ -29,10 +27,7 @@ public class CargaBC {
 	
 	@Inject
 	private UsuarioDAO usuarioDAO;
-	
-	@Inject
-	private AtletaDAO atletaDAO;
-	
+		
 	@Inject
 	private ComunidadeDAO comunidadeDAO;
 	
@@ -46,7 +41,6 @@ public class CargaBC {
 		userADM.getEndereco().setCep("04011060");
 		userADM.getEndereco().setComplemento("numero 228, ap 95");
 		userADM.getEndereco().setLogradouro("Rua jose antonio coelho");
-//		userADM.setLogin("adm");
 		userADM.setSenha("1234");
 		userADM.setTelefones(new ArrayList<Telefone>());
 		Telefone tel = new Telefone();
@@ -66,13 +60,12 @@ public class CargaBC {
 		
 		
 		logger.debug("Inserindo usuario");		
-		Atleta user = new Atleta();
+		Usuario user = new Usuario();
 		user.setEmail("robsonximenes@gmail.com");
 		user.setEndereco(new Endereco());
 		user.getEndereco().setCep("04011060");
 		user.getEndereco().setComplemento("numero 228, ap 95");
 		user.getEndereco().setLogradouro("Rua jose antonio coelho");
-//		user.setLogin("robsonximenes");
 		user.setSenha("1234");
 		user.setTelefones(new ArrayList<Telefone>());
 		Telefone t = new Telefone();
@@ -83,15 +76,15 @@ public class CargaBC {
 		user.setClube("Costa verde");
 		user.setHistoria("blablablabal blabalbalba blablabalba blababalba");
 		user.setIdolo("Agassi");
-		atletaDAO.insert(user);
+		usuarioDAO.insert(user);
 		
 		logger.debug("Matriculando usuario em comunidade");
 		Matricula matricula = new Matricula();
 		matricula.setComunidade(comunidade);
-		matricula.setAtleta(user);
+		matricula.setUsuario(user);
 		matricula.setDataCadastro(new Date());
 		user.getComunidade().add(matricula);
-		atletaDAO.update(user);
+		usuarioDAO.update(user);
 		
 		
 		logger.debug("MODELAGEM OK!");

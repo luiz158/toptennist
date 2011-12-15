@@ -56,12 +56,12 @@ public class Matricula {
     }
 
     @Transient
-    public Atleta getAtleta() {
-        return getPk().getAtleta();
+    public Usuario getUsuario() {
+        return getPk().getUsuario();
     }
 
-    public void setAtleta(Atleta atleta) {
-        getPk().setAtleta(atleta);
+    public void setUsuario(Usuario atleta) {
+        getPk().setUsuario(atleta);
     }
 
 	public void setPk(MatriculaPK pk) {

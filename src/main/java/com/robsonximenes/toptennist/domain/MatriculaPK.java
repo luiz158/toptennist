@@ -14,7 +14,7 @@ public class MatriculaPK implements Serializable {
 	private Comunidade comunidade;
 
 	@ManyToOne
-	private Atleta atleta;
+	private Usuario usuario;
 
 	public Comunidade getComunidade() {
 		return comunidade;
@@ -24,12 +24,12 @@ public class MatriculaPK implements Serializable {
 		this.comunidade = comunideade;
 	}
 
-	public Atleta getAtleta() {
-		return atleta;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setAtleta(Atleta atleta) {
-		this.atleta = atleta;
+	public void setUsuario(Usuario atleta) {
+		this.usuario = atleta;
 	}
 
 	public boolean equals(Object o) {
@@ -42,7 +42,7 @@ public class MatriculaPK implements Serializable {
 
 		if (comunidade != null ? !comunidade.equals(that.comunidade) : that.comunidade != null)
 			return false;
-		if (atleta != null ? !atleta.equals(that.atleta) : that.atleta != null)
+		if (usuario != null ? !usuario.equals(that.usuario) : that.usuario != null)
 			return false;
 
 		return true;
@@ -51,7 +51,7 @@ public class MatriculaPK implements Serializable {
 	public int hashCode() {
 		int result;
 		result = (comunidade != null ? comunidade.hashCode() : 0);
-		result = 31 * result + (atleta != null ? atleta.hashCode() : 0);
+		result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
 		return result;
 	}
 
