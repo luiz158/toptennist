@@ -26,8 +26,10 @@ container {
 	width:200px;
 	min-height: 400px;
 	padding:10px;
+	background:#1FFFFF;
 }
 #content {
+	margin-left: 5px;
 	min-width: 400px;
 	min-height: 400px;
     width: auto;
@@ -53,6 +55,13 @@ container {
 	float: right;
 	text-align: left;
 	vertical-align: middle;
+}
+
+#toolbar{
+	padding: 5px;
+	min-width: 100px;
+	height: 30px;
+	text-align: center;
 }
 
 

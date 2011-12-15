@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -74,6 +76,10 @@ public class Usuario implements Serializable {
 	private String raquete;
 
 	private String idolo;
+	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] foto;
 
 	@OneToMany(mappedBy = "pk.usuario", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Matricula> comunidades = new ArrayList<Matricula>();
@@ -246,6 +252,14 @@ public class Usuario implements Serializable {
 	
 	public void setComunidades(List<Matricula> comunidade) {
 		this.comunidades = comunidade;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 
 }
