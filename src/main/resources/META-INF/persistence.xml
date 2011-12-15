@@ -8,7 +8,6 @@
 		<non-jta-data-source>java:/DefaultDS</non-jta-data-source>
 		
 		<class>com.robsonximenes.toptennist.domain.Usuario</class>
-		<class>com.robsonximenes.toptennist.domain.Atleta</class>
 		<class>com.robsonximenes.toptennist.domain.Comunidade</class>
 		<class>com.robsonximenes.toptennist.domain.Matricula</class>
 		<class>com.robsonximenes.toptennist.domain.Telefone</class>

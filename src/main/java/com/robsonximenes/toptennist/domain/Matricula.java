@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 @Entity
 @Table
 @AssociationOverrides({ @AssociationOverride(name = "pk.comunidade", joinColumns = @JoinColumn(name = "comunidade_id")),
-		@AssociationOverride(name = "pk.atleta", joinColumns = @JoinColumn(name = "atleta_id")) })
+		@AssociationOverride(name = "pk.usuario", joinColumns = @JoinColumn(name = "usuario_id")) })
 public class Matricula {
 
 	@EmbeddedId

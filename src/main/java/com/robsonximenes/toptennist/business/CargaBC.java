@@ -61,6 +61,7 @@ public class CargaBC {
 		
 		logger.debug("Inserindo usuario");		
 		Usuario user = new Usuario();
+		user.setNome("Robson Saraiva Ximenes");
 		user.setEmail("robsonximenes@gmail.com");
 		user.setEndereco(new Endereco());
 		user.getEndereco().setCep("04011060");
@@ -83,7 +84,7 @@ public class CargaBC {
 		matricula.setComunidade(comunidade);
 		matricula.setUsuario(user);
 		matricula.setDataCadastro(new Date());
-		user.getComunidade().add(matricula);
+		user.getComunidades().add(matricula);
 		usuarioDAO.update(user);
 		
 		

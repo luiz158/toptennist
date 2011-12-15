@@ -9,7 +9,7 @@
 				        <p:graphicImage value="/images/sem_imagem.jpg" 
 				        	width="90px" height="120px;"/> 
 				        <h:panelGrid>
-				        	<h:outputText value="#{usuarioMB.bean.nome}" />
+				        	<h:outputText value="#{usuarioMB.logado.nome}" />
 				        	<h:commandLink value="Perfil" action="/usuario_perfil.jsf"/>
 				        </h:panelGrid>  
 				</h:panelGrid> 
@@ -22,11 +22,14 @@
 			
 			<div id="comunidades">
 				<h3>Comunidades</h3>
-				<h:panelGrid columns="2" cellpadding="2">  
-				        <p:graphicImage value="/images/sem_imagem.jpg" 
-				        	width="10px" height="10px;"/>  
-				        <h:outputText value="nome da comunidade" />
-				</h:panelGrid> 
+				
+				<p:dataList var="matricula" value="#{usuarioMB.logado.comunidades}">  
+			        <p:graphicImage value="/images/sem_imagem.jpg" 
+				        	width="10px" height="10px;"/> - 
+			        <h:outputText value="#{matricula.comunidade.nome}" />
+			        
+			    </p:dataList>  
+				
 				<h:commandLink value="Criar comunidade" action="#{comunidadeMB.criarNovaComunidade}"/>
 			</div>
 			

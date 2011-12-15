@@ -75,8 +75,8 @@ public class Usuario implements Serializable {
 
 	private String idolo;
 
-	@OneToMany(mappedBy = "pk.atleta", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Matricula> comunidade = new ArrayList<Matricula>();
+	@OneToMany(mappedBy = "pk.usuario", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Matricula> comunidades = new ArrayList<Matricula>();
 
 	public Long getId() {
 		return id;
@@ -239,13 +239,13 @@ public class Usuario implements Serializable {
 	}
 
 	
-	public List<Matricula> getComunidade() {
-		return comunidade;
+	public List<Matricula> getComunidades() {
+		return comunidades;
 	}
 
 	
-	public void setComunidade(List<Matricula> comunidade) {
-		this.comunidade = comunidade;
+	public void setComunidades(List<Matricula> comunidade) {
+		this.comunidades = comunidade;
 	}
 
 }
