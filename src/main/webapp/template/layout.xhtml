@@ -29,7 +29,8 @@
 				<h:panelGroup rendered="#{usuarioMB.logado != null}">
 					<p:commandButton id="dynaButton" value="#{usuarioMB.logado.nome}" type="button" />
 					<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
-						<p:menuitem value="#{messages['usuario.perfil.label']}" url="/usuario_perfil.jsf" icon="ui-icon ui-icon-disk" />
+						<p:menuitem value="#{messages['usuario.perfil.label']}"
+							action="#{usuarioMB.editarPerfil}" icon="ui-icon ui-icon-disk" />
 						<p:menuitem value="#{messages['usuario.sair.label']}" 
 						action="#{usuarioMB.deslogar}"
 						icon="ui-icon ui-icon-arrowrefresh-1-w" />

@@ -1,16 +1,21 @@
 package com.robsonximenes.toptennist.view;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
 
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.gov.frameworkdemoiselle.util.Faces;
 
 import com.robsonximenes.toptennist.business.UsuarioBC;
 import com.robsonximenes.toptennist.cdi.Logado;
@@ -24,6 +29,8 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	private static final long serialVersionUID = -5764771730331382996L;
 	
 	private Usuario logado = null;
+	
+	private DefaultStreamedContent imagem;
 	
 	@Inject
 	private UsuarioBC bc;;
@@ -41,6 +48,12 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	@Inject
 	private HttpSession session;
 	
+	
+	public String editarPerfil(){
+		setBean(getLogado());
+		return "usuario_perfil.jsf";
+	}
+	
 	public String deslogar() {
 		logado = null;
 		setBean(new Usuario());
@@ -51,9 +64,15 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	
 	public String logar() {
 		logado = dao.verificar(getBean());
+		atualizarImagen();
 		return "/home";
 	}
 	
+	private void atualizarImagen() {
+		if(logado!=null && logado.getFoto()!=null)
+			setImagem(new DefaultStreamedContent(new ByteArrayInputStream(logado.getFoto())));
+	}
+
 	public String registrar() {		
 		bc.cadastrar(getBean());		
 		return "/aguardando_confirmacao_cadastro";
@@ -105,6 +124,28 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	@Produces @Logado @SessionScoped
 	public Usuario obterUsuarioLogado() {
 		return this.logado;
+	}
+		
+	public void handleFileUpload(FileUploadEvent event) {
+		try {
+			setImagem(new DefaultStreamedContent(event.getFile()
+					.getInputstream()));
+			byte[] foto = event.getFile().getContents();
+			this.getBean().setFoto(foto);
+		} catch (IOException ex) {
+			Faces.addMessage(event.getComponent().getClientId(),ex);
+		}
+	}
+
+	public void setImagem(DefaultStreamedContent imagem) {
+		this.imagem = imagem;
+	}
+
+	public DefaultStreamedContent getImagem() {
+		if(imagem == null){
+			imagem = new DefaultStreamedContent();
+		}
+		return imagem;
 	}
 	
 }
