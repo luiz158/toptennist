@@ -11,7 +11,7 @@
 		</div>
 		<div id="login">
 			<h:form>
-				<h:panelGrid columns="3" rendered="#{usuarioMB.logado == null}">
+				<h:panelGrid columns="3" rendered="#{usuarioMB.logado.id == null}">
 					<h:selectBooleanCheckbox label="lembrar" value="#{usuarioMB.lembrar}" />
 					
 					<h:commandLink value="Esqueceu a senha?" action="#{usuarioMB.logar}">
@@ -19,18 +19,19 @@
 				
 					<h:outputText value="  " />
 				
-					<h:inputText id="login" value="#{usuarioMB.bean.email }"  size="20"/>
+					<h:inputText id="login" value="#{usuarioMB.logado.email }"  size="20"/>
 				
-					<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}" size="20"/>
+					<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}" size="20"/>
 				
 					<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
 				</h:panelGrid>
 
-				<h:panelGroup rendered="#{usuarioMB.logado != null}">
+				<h:panelGroup rendered="#{usuarioMB.logado.id != null}">
 					<p:commandButton id="dynaButton" value="#{usuarioMB.logado.nome}" type="button" />
 					<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
 						<p:menuitem value="#{messages['usuario.perfil.label']}"
-							action="#{usuarioMB.editarPerfil}" icon="ui-icon ui-icon-disk" />
+							action="#{usuarioMB.editarPerfil}" icon="ui-icon ui-icon-disk"
+							 />
 						<p:menuitem value="#{messages['usuario.sair.label']}" 
 						action="#{usuarioMB.deslogar}"
 						icon="ui-icon ui-icon-arrowrefresh-1-w" />

@@ -7,44 +7,61 @@
 		<h:form prependId="false">
 			
 			<div id="toolbar">
-				<h:commandButton value="#{messages['button.save']}" action="#{usuarioMB.update}"  ajax="false" />			
+				<h:commandButton value="#{messages['button.save']}" action="#{perfilMB.update}"  ajax="false" />			
 			</div>
 			
 			<br />
 
-			<p:panel id="panel" header="#{messages['usuario.perfil.label']}" style="margin-bottom:10px;">
+			<h2><h:outputText value="#{messages['usuario.perfil.label']}"/></h2>
+				
+				<h:inputText id="id" value="#{perfilMB.bean.id}" />
 				
 				<h:panelGrid id="fields" columns="3">
 				
-					<h:outputLabel value="#{messages['usuario.perfil.label.foto']}: " for="text"
-						styleClass="text-input" />
+					<h:outputLabel value="#{messages['usuario.perfil.label.foto']}: " 
+						for="foto" styleClass="text-input" />
 					<p:fileUpload id="foto" sizeLimit="204800" auto="true"
 						widgetVar="uploader" label="Procurar..."
-						fileUploadListener="#{usuarioMB.handleFileUpload}"
+						fileUploadListener="#{perfilMB.handleFileUpload}"
 						allowTypes="*.jpg;*.png;*.gif;" description="Images"
-						update="imagem" multiple="false" customUI="true" />
-					<p:graphicImage value="#{usuarioMB.imagem}" id="imagem"
-						cache="false" height="150px" width="250px" />
+						update="fotoPerfil" multiple="false" customUI="true" />
+					<p:graphicImage value="#{perfilMB.imagem}" id="fotoPerfil"
+						cache="false" height="90px" width="120px" />
 
 					<h:outputLabel value="#{messages['usuario.perfil.label.email']}: " 
 						for="email" styleClass="text-input" />
-					<h:inputText id="email" value="#{usuarioMB.bean.email}"
+					<h:inputText id="email" value="#{perfilMB.bean.email}"
 						title="#{messages['usuario.perfil.alt.email']}" />
 					<p:message for="email" />
 					
 					<h:outputLabel value="#{messages['usuario.perfil.label.senha']}: " 
 						for="senha" styleClass="text-input" />
-					<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}"
+					<h:inputSecret id="senha" value="#{perfilMB.bean.senha}"
 						title="#{messages['usuario.perfil.alt.senha']}" />
 					<p:message for="senha" />
 				</h:panelGrid>
 				
-				<p:fieldset legend="Endereco">
-					<h:panelGrid id="enderecoFields" columns="3">
-					</h:panelGrid>
-				</p:fieldset>
+			<h2>Endereco</h2>
+			<h:panelGrid columns="3">			
+				<h:outputLabel value="#{messages['endereco.label.logradouro']}: " 
+							for="logradouro" styleClass="text-input" />
+				<h:inputText id="logradouro" value="#{perfilMB.bean.endereco.logradouro}" 
+							title="#{messages['endereco.alt.logradouro']}" />
+				<p:message for="logradouro" />
 				
-			</p:panel>
+				<h:outputLabel value="#{messages['endereco.label.complemento']}: " 
+							for="complemento" styleClass="text-input" />
+				<h:inputText id="complemento" value="#{perfilMB.bean.endereco.complemento}" 
+							title="#{messages['endereco.alt.complemento']}" />
+				<p:message for="complemento" />	
+				
+				<h:outputLabel value="#{messages['endereco.label.cep']}: " 
+							for="cep" styleClass="text-input" />
+				<h:inputText id="cep" value="#{perfilMB.bean.endereco.cep}" 
+							title="#{messages['endereco.alt.cep']}" />
+				<p:message for="cep" />			
+			</h:panelGrid>
+				
 		</h:form>
 	</ui:define>
 </ui:composition>

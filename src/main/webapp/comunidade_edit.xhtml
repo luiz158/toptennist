@@ -47,19 +47,19 @@
 			<h:panelGrid columns="3">			
 				<h:outputLabel value="#{messages['endereco.label.logradouro']}: " 
 							for="logradouro" styleClass="text-input" />
-				<h:inputText id="logradouro" value="#{comunidadeMB.comunidade.logradouro}" 
+				<h:inputText id="logradouro" value="#{comunidadeMB.comunidade.endereco.logradouro}" 
 							title="#{messages['endereco.alt.logradouro']}" />
 				<p:message for="logradouro" />
 				
 				<h:outputLabel value="#{messages['endereco.label.complemento']}: " 
 							for="complemento" styleClass="text-input" />
-				<h:inputText id="complemento" value="#{comunidadeMB.comunidade.complemento}" 
+				<h:inputText id="complemento" value="#{comunidadeMB.comunidade.endereco.complemento}" 
 							title="#{messages['endereco.alt.complemento']}" />
 				<p:message for="complemento" />	
 				
 				<h:outputLabel value="#{messages['endereco.label.cep']}: " 
 							for="cep" styleClass="text-input" />
-				<h:inputText id="cep" value="#{comunidadeMB.comunidade.cep}" 
+				<h:inputText id="cep" value="#{comunidadeMB.comunidade.endereco.cep}" 
 							title="#{messages['endereco.alt.cep']}" />
 				<p:message for="cep" />			
 			</h:panelGrid>

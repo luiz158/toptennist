@@ -5,10 +5,12 @@
 	<h:form>
 		<div id="perfil" class="div_menu">
 			<h:panelGrid columns="2" cellpadding="2">
-				<p:graphicImage value="/images/sem_imagem.jpg" width="90px" height="120px;" />
+				<p:graphicImage value="#{usuarioMB.imagem}" width="90px" height="120px;" />
 				<h:panelGrid>
 					<h:outputText value="#{usuarioMB.logado.nome}" />
-					<h:commandLink value="Perfil" action="/usuario_perfil.jsf" />
+					<h:commandLink value="Perfil" action="/usuario_perfil.jsf">					
+						<f:param name="id" value="#{usuarioMB.logado.id}" />
+					</h:commandLink>
 				</h:panelGrid>
 			</h:panelGrid> 
 			<h:panelGrid columns="1">

@@ -18,16 +18,16 @@
 					<h:panelGrid columns="2" width="350px">
 						
 						<h:outputLabel value="E-mail" for="login"/>					
-						<h:inputText id="login" value="#{usuarioMB.bean.email}" />
+						<h:inputText id="login" value="#{usuarioMB.logado.email}" />
 						
 						<h:outputLabel value="Senha" for="senha"/>
-						<h:inputSecret id="senha" value="#{usuarioMB.bean.senha}"/>
+						<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}"/>
 						
 						<h:outputLabel value="Nome" for="nome"/>					
-						<h:inputText id="nome" value="#{usuarioMB.bean.nome }" />
+						<h:inputText id="nome" value="#{usuarioMB.logado.nome }" />
 						
 						<h:outputLabel value="Aniversário" for="dataNascimento"/>
-						<p:calendar id="dataNascimento" value="#{usuarioMB.bean.dataNascimento}"/>						
+						<p:calendar id="dataNascimento" value="#{usuarioMB.logado.dataNascimento}"/>						
 						
 						<h:commandButton action="#{usuarioMB.registrar}" value="Registrar" />
 					</h:panelGrid>
