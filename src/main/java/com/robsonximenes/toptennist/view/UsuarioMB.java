@@ -1,12 +1,10 @@
 package com.robsonximenes.toptennist.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.enterprise.inject.Produces;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -15,8 +13,7 @@ import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 import com.robsonximenes.toptennist.business.UsuarioBC;
-import com.robsonximenes.toptennist.domain.Endereco;
-import com.robsonximenes.toptennist.domain.Telefone;
+import com.robsonximenes.toptennist.cdi.Logado;
 import com.robsonximenes.toptennist.domain.Usuario;
 import com.robsonximenes.toptennist.persistence.UsuarioDAO;
 
@@ -104,4 +101,10 @@ public class UsuarioMB extends AbstractEditPageBean<Usuario, Long> implements Se
 	public void setLembrar(Boolean lembrar) {
 		this.lembrar = lembrar;
 	}
+	
+	@Produces @Logado @SessionScoped
+	public Usuario obterUsuarioLogado() {
+		return this.logado;
+	}
+	
 }

@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<div id="comunidades" class="div_menu">
+			<h3>Comunidades</h3>
+			
+			<p:dataList var="matricula" value="#{usuarioMB.logado.comunidades}">  
+		        <p:graphicImage value="/images/sem_imagem.jpg" 
+			        	width="10px" height="10px;"/> - 
+		        <h:outputText value="#{matricula.comunidade.nome}" />
+		        
+		    </p:dataList>  
+			
+			<h:commandLink value="Criar comunidade" action="#{comunidadeMB.criarComunidade}"/>
+		</div>
+	</h:form>
+
+</ui:composition>
