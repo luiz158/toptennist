@@ -1,66 +1,84 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/logado.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/template/logado.xhtml">
+
+	<h:outputStylesheet>
+        .pic {
+        margin-right: 2px;
+        }
+    </h:outputStylesheet>
 
 
 	<ui:define name="content">
 		<h:form prependId="false">
 			
-			<div id="toolbar">
-				<h:commandButton value="#{messages['button.save']}" action="#{perfilMB.update}"  ajax="false" />			
-			</div>
+			<a4j:outputPanel ajaxRendered="true" layout="inline" >			
+				<rich:toolbar height="26" itemSeparator="grid" >
+			        <rich:toolbarGroup>
+			        	<h:commandButton image="/images/sem_imagem.jpg" style="width: 10px;" action="#{perfilMB.update}"/>
+			        </rich:toolbarGroup>
+			    </rich:toolbar>			
+			</a4j:outputPanel>
 			
 			<br />
-
-			<h2><h:outputText value="#{messages['usuario.perfil.label']}"/></h2>
-				
-				<h:inputText id="id" value="#{perfilMB.bean.id}" />
-				
-				<h:panelGrid id="fields" columns="3">
-				
-					<h:outputLabel value="#{messages['usuario.perfil.label.foto']}: " 
-						for="foto" styleClass="text-input" />
-					<p:fileUpload id="foto" sizeLimit="204800" auto="true"
-						widgetVar="uploader" label="Procurar..."
-						fileUploadListener="#{perfilMB.handleFileUpload}"
-						allowTypes="*.jpg;*.png;*.gif;" description="Images"
-						update="fotoPerfil" multiple="false" customUI="true" />
-					<p:graphicImage value="#{perfilMB.imagem}" id="fotoPerfil"
-						cache="false" height="90px" width="120px" />
-
-					<h:outputLabel value="#{messages['usuario.perfil.label.email']}: " 
-						for="email" styleClass="text-input" />
-					<h:inputText id="email" value="#{perfilMB.bean.email}"
-						title="#{messages['usuario.perfil.alt.email']}" />
-					<p:message for="email" />
+			
+			 <rich:tabPanel switchType="client" >
+        		<rich:tab header="#{messages['usuario.perfil.label']}">  
+			       
+			       <h:inputHidden id="id" value="#{perfilMB.bean.id}" />				
+					<h:panelGrid id="fields" columns="3">					
+						<h:outputLabel value="#{messages['usuario.perfil.label.foto']}: " 
+							for="foto" styleClass="text-input" />
+							
+						<rich:fileUpload fileUploadListener="#{perfilMB.handleFileUpload}" id="foto" acceptedTypes="jpg, gif, png, bmp"
+			                ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+			                <a4j:ajax event="uploadcomplete" execute="@none" render="fotoPerfil" />
+			            </rich:fileUpload>	
+						<p:graphicImage value="#{perfilMB.imagem}" id="fotoPerfil"
+							cache="false" height="90px" width="120px" />
+	
+						<h:outputLabel value="#{messages['usuario.perfil.label.email']}: " 
+							for="email" styleClass="text-input" />
+						<h:inputText id="email" value="#{perfilMB.bean.email}"
+							title="#{messages['usuario.perfil.alt.email']}" />
+						<p:message for="email" />
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.senha']}: " 
+							for="senha" styleClass="text-input" />
+						<h:inputSecret id="senha" value="#{perfilMB.bean.senha}"
+							title="#{messages['usuario.perfil.alt.senha']}" />
+						<p:message for="senha" />
+					</h:panelGrid>
 					
-					<h:outputLabel value="#{messages['usuario.perfil.label.senha']}: " 
-						for="senha" styleClass="text-input" />
-					<h:inputSecret id="senha" value="#{perfilMB.bean.senha}"
-						title="#{messages['usuario.perfil.alt.senha']}" />
-					<p:message for="senha" />
+				<h2>Endereco</h2>
+				<h:panelGrid columns="3">			
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " 
+								for="logradouro" styleClass="text-input" />
+					<h:inputText id="logradouro" value="#{perfilMB.bean.endereco.logradouro}" 
+								title="#{messages['endereco.alt.logradouro']}" />
+					<p:message for="logradouro" />
+					
+					<h:outputLabel value="#{messages['endereco.label.complemento']}: " 
+								for="complemento" styleClass="text-input" />
+					<h:inputText id="complemento" value="#{perfilMB.bean.endereco.complemento}" 
+								title="#{messages['endereco.alt.complemento']}" />
+					<p:message for="complemento" />	
+					
+					<h:outputLabel value="#{messages['endereco.label.cep']}: " 
+								for="cep" styleClass="text-input" />
+					<h:inputText id="cep" value="#{perfilMB.bean.endereco.cep}" 
+								title="#{messages['endereco.alt.cep']}" />
+					<p:message for="cep" />			
 				</h:panelGrid>
-				
-			<h2>Endereco</h2>
-			<h:panelGrid columns="3">			
-				<h:outputLabel value="#{messages['endereco.label.logradouro']}: " 
-							for="logradouro" styleClass="text-input" />
-				<h:inputText id="logradouro" value="#{perfilMB.bean.endereco.logradouro}" 
-							title="#{messages['endereco.alt.logradouro']}" />
-				<p:message for="logradouro" />
-				
-				<h:outputLabel value="#{messages['endereco.label.complemento']}: " 
-							for="complemento" styleClass="text-input" />
-				<h:inputText id="complemento" value="#{perfilMB.bean.endereco.complemento}" 
-							title="#{messages['endereco.alt.complemento']}" />
-				<p:message for="complemento" />	
-				
-				<h:outputLabel value="#{messages['endereco.label.cep']}: " 
-							for="cep" styleClass="text-input" />
-				<h:inputText id="cep" value="#{perfilMB.bean.endereco.cep}" 
-							title="#{messages['endereco.alt.cep']}" />
-				<p:message for="cep" />			
-			</h:panelGrid>
+			   </rich:tab>
+			   <rich:tab header="OUtra tab">
+			   	blblablab
+			   </rich:tab>
+			   
+			</rich:tabPanel>
 				
 		</h:form>
 	</ui:define>

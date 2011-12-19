@@ -1,5 +1,6 @@
 package com.robsonximenes.toptennist.view;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import javax.enterprise.context.SessionScoped;
@@ -42,7 +43,7 @@ public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 
 	@Override
 	public String update() {
-		bc.update(getBean());
+		bc.atualizar(getBean());
 		return getPreviousView();
 	}
 
@@ -60,6 +61,9 @@ public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 			Faces.addMessage(event.getComponent().getClientId(),ex);
 		}
 	}
+	
+
+	
 
 	public void setImagem(DefaultStreamedContent imagem) {
 		this.imagem = imagem;
@@ -67,7 +71,11 @@ public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 
 	public DefaultStreamedContent getImagem() {
 		if(imagem == null){
-			imagem = new DefaultStreamedContent();
+			if(getBean().getFoto()!=null) {
+				imagem = new DefaultStreamedContent(new ByteArrayInputStream(getBean().getFoto()));
+			}else {
+				imagem = new DefaultStreamedContent();
+			}
 		}
 		return imagem;
 	}

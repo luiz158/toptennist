@@ -1,6 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/template/main.xhtml">
 	
 	
 	<ui:define name="header">
@@ -26,17 +29,19 @@
 					<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
 				</h:panelGrid>
 
-				<h:panelGroup rendered="#{usuarioMB.logado.id != null}">
-					<p:commandButton id="dynaButton" value="#{usuarioMB.logado.nome}" type="button" />
-					<p:menu position="dynamic" trigger="dynaButton" my="left top" at="left bottom">
-						<p:menuitem value="#{messages['usuario.perfil.label']}"
-							action="#{usuarioMB.editarPerfil}" icon="ui-icon ui-icon-disk"
-							 />
-						<p:menuitem value="#{messages['usuario.sair.label']}" 
-						action="#{usuarioMB.deslogar}"
-						icon="ui-icon ui-icon-arrowrefresh-1-w" />
-					</p:menu>
-				</h:panelGroup>
+				<rich:panelMenu rendered="#{usuarioMB.logado.id != null}" 
+					style="width:200px" itemMode="ajax" groupMode="ajax" 
+					groupExpandedLeftIcon="triangleUp"
+                	groupCollapsedLeftIcon="triangleDown" 
+                	topGroupExpandedRightIcon="chevronUp"
+                	topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" 
+                	itemChangeListener="#{panelMenuBean.updateCurrent}">
+	                <rich:panelMenuGroup label="#{usuarioMB.logado.nome}">
+	                    <rich:panelMenuItem label="#{messages['usuario.perfil.label']}" action="#{usuarioMB.editarPerfil}" name="Item_1_1" />
+	                    <rich:panelMenuItem label="#{messages['usuario.sair.label']}" action="#{usuarioMB.deslogar}" name="Item_1_2" />
+	                </rich:panelMenuGroup>
+                </rich:panelMenu>
+				
 			</h:form>
 		</div>
 	</ui:define>

@@ -1,5 +1,7 @@
-<html xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 
 <f:view contentType="text/html" locale="#currentLocale" />
 
@@ -35,16 +37,7 @@
 		</div>
 	</div>
 	
-	<p:growl id="messages" globalOnly="true" />
-	<p:ajaxStatus style="width:16px;height:16px;">
-		<f:facet name="start">
-		</f:facet>
-
-		<f:facet name="complete">
-			<h:outputText value="" />
-		</f:facet>
-	</p:ajaxStatus>
-	<link type="text/css" rel="stylesheet" href="css/aristo/skin.css" />
+	 <rich:messages id="messages" globalOnly="true" ajaxRendered="true" />
 
 </h:body>
 </html>

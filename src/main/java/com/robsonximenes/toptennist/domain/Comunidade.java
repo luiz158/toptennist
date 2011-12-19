@@ -41,7 +41,7 @@ public class Comunidade implements Serializable {
 	@OneToMany
 	private List<Telefone> telefones;
 
-	@OneToMany(mappedBy = "pk.comunidade", fetch=FetchType.LAZY, cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy = "pk.comunidade")
 	private List<Matricula> atletas = new ArrayList<Matricula>();
 
 	

@@ -1,17 +1,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	>
 
 	<h:form>
 		<div id="comunidades" class="div_menu">
 			<h3>Comunidades</h3>
 			
-			<p:dataList var="matricula" value="#{usuarioMB.logado.comunidades}">  
-		        <p:graphicImage value="/images/sem_imagem.jpg" 
-			        	width="10px" height="10px;"/> - 
-		        <h:outputText value="#{matricula.comunidade.nome}" />
-		        
-		    </p:dataList>  
+			<a4j:repeat value="#{usuarioMB.comunidades}"
+				 id="list" var="matricula" >
+				 
+				<h:graphicImage value="/images/sem_imagem.jpg" width="10px" height="10px;" /> - 
+		        <h:outputText value="#{matricula.nome}" />
+		        <br />
+		    </a4j:repeat> 
 			
 			<h:commandLink value="Criar comunidade" action="#{comunidadeMB.criarComunidade}"/>
 		</div>

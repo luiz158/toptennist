@@ -84,8 +84,8 @@ public class CargaBC {
 		matricula.setComunidade(comunidade);
 		matricula.setUsuario(user);
 		matricula.setDataCadastro(new Date());
-		user.getComunidades().add(matricula);
-		usuarioDAO.update(user);
+//		user.getComunidades().add(matricula);
+//		usuarioDAO.update(user);
 		
 		
 		logger.debug("MODELAGEM OK!");

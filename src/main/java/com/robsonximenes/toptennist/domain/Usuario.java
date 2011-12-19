@@ -81,8 +81,8 @@ public class Usuario implements Serializable {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] foto;
 
-	@OneToMany(mappedBy = "pk.usuario", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Matricula> comunidades = new ArrayList<Matricula>();
+//	@OneToMany(mappedBy = "pk.usuario")
+//	private List<Matricula> comunidades = new ArrayList<Matricula>();
 
 	public Long getId() {
 		return id;
@@ -245,14 +245,14 @@ public class Usuario implements Serializable {
 	}
 
 	
-	public List<Matricula> getComunidades() {
-		return comunidades;
-	}
-
-	
-	public void setComunidades(List<Matricula> comunidade) {
-		this.comunidades = comunidade;
-	}
+//	public List<Matricula> getComunidades() {
+//		return comunidades;
+//	}
+//
+//	
+//	public void setComunidades(List<Matricula> comunidade) {
+//		this.comunidades = comunidade;
+//	}
 
 	public byte[] getFoto() {
 		return foto;

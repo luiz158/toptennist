@@ -22,7 +22,7 @@ container {
 }
 #menu {
     float:left;
-    display: inline;
+    display: block;
 	width:200px;
 	min-height: 400px;
 	padding:10px;
@@ -36,7 +36,7 @@ container {
     width: auto;
     background:#FFFFFF;   
     text-align: justify;
-    display: block;
+    display: inline;
     padding: 1em 1em;
 }
 
