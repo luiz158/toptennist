@@ -1,44 +1,87 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" 
+<html xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
-	template="/template/layout.xhtml">
+	xmlns:rich="http://richfaces.org/rich">
 
-	<ui:define name="no_menu"></ui:define>
+<f:view contentType="text/html" locale="#currentLocale" />
 
-	<ui:define name="content">
-		<br clear="none"/>
+<h:head>
+	<title>#{messages['main.app.title']}</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Robson Saraiva Ximenes" />
+	<meta name="keywords" content="Tênis, Tennis, Tennis Player, Tenista, Ranking, Torneios, Rede Social, Comunidade, tenistas, federação, scores, resultados" />
+	<meta name="description" content="Sitema para criação de rankings, torneios e comunidades de tenistas." />
+	<meta name="robots" content="all" />
+	<link rel="stylesheet" href="css/layout_novo.css" type="text/css" media="screen" />
+</h:head>
+<h:body id="corpo">
+	<div id="container">
+		<div id="header">
 		
-		<h:panelGrid columns="2" width="100%" style="padding: 10px; cell-padding: 10px;">
-			
-			<rich:panel style="width: auto;">
-				#{messages['main.app.welcome']}
-			</rich:panel>
-			
-			<rich:panel style="width: 450px;">
+			<div style="float: left">..</div>
+			<div style="float: right">
 				<h:form>
-					<h2>Faça sua inscrição!</h2>
-					<h:panelGrid columns="2" width="350px">
+					<h:panelGrid columns="3">
+						<h:selectBooleanCheckbox label="lembrar" value="#{usuarioMB.lembrar}" />
 						
-						<h:outputLabel value="E-mail" for="login"/>					
-						<h:inputText id="login" value="#{usuarioMB.logado.email}" />
-						
-						<h:outputLabel value="Senha" for="senha"/>
-						<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}"/>
-						
-						<h:outputLabel value="Nome" for="nome"/>					
-						<h:inputText id="nome" value="#{usuarioMB.logado.nome }" />
-						
-						<h:outputLabel value="Aniversário" for="dataNascimento"/>
-						<rich:calendar id="dataNascimento" value="#{usuarioMB.logado.dataNascimento}"/>						
-						
-						<h:commandButton action="#{usuarioMB.registrar}" value="Registrar" />
+						<h:commandLink value="Esqueceu a senha?" action="#{usuarioMB.logar}">
+						</h:commandLink>
+					
+						<h:outputText value="  " />
+					
+						<h:inputText id="login" value="#{usuarioMB.logado.email }"  size="20"/>
+					
+						<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}" size="20"/>
+					
+						<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
 					</h:panelGrid>
 				</h:form>
-			</rich:panel>
-			
-		</h:panelGrid>
-	</ui:define>
+			</div>
+		</div>
+		<div id="main">
+			<br clear="none"/>
+		
+			<h:panelGrid columns="2" width="100%" style="padding: 10px; cell-padding: 10px;">
+				
+				<rich:panel style="width: auto;">
+					Bem-vindo ao TopTennist! Aqui você encontrará a galera que curte o tênis! <br />
+					Crie ou participe de uma comunidade de tenistas e pratique este maravilhoso esporte. <br />
+					Participe de torneios e acompanhe a sua evolução através dos rankins! <br />
+					Conheça seus adversários e parceiros e veja seu histórico de confrontos!
+				</rich:panel>
+				
+				<rich:panel style="width: 450px;">
+					<h:form>
+						<h2>Faça sua inscrição!</h2>
+						<h:panelGrid columns="2" width="350px">
+							
+							<h:outputLabel value="E-mail" for="login"/>					
+							<h:inputText id="login" value="#{usuarioMB.logado.email}" />
+							
+							<h:outputLabel value="Senha" for="senha"/>
+							<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}"/>
+							
+							<h:outputLabel value="Nome" for="nome"/>					
+							<h:inputText id="nome" value="#{usuarioMB.logado.nome }" />
+							
+							<h:outputLabel value="Aniversário" for="dataNascimento"/>
+							<rich:calendar id="dataNascimento" value="#{usuarioMB.logado.dataNascimento}"/>						
+							
+							<h:commandButton action="#{usuarioMB.registrar}" value="Registrar" />
+						</h:panelGrid>
+					</h:form>
+				</rich:panel>
+				
+			</h:panelGrid>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+					#{messages['main.footer.text']}
+			</ui:insert>
+		</div>
+	</div>
+	
+	 <rich:messages id="messages" globalOnly="true" ajaxRendered="true" />
 
-</ui:composition>
+</h:body>
+</html>

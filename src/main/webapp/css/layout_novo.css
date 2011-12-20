@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+#corpo{
+    background:#c35645;
+    border-width: 1px;
+    border-style:solid;
+}
+
+#container {
+    background:#c35645;
+    display: block;
+    margin: 0 auto; /* centrar o layout horizontalmente */
+	width: auto; /* vamos utilizar auto ou qualquer percentagem, para garantir que utilizamos o tamanho da janela do browser automaticamente */
+	min-width: 760px; /* definimos uma largura mínima para o nosso container */
+	max-width: 90em; /* é prática comum utilizar valores em, de modo a que a largura do texto se mantenha constante às várias resoluções do ecrã*/
+	min-height: 400px;  
+}
+#header {
+	height: 45px;
+    padding:10px;
+	background:#c35645;
+	display: block;
+}
+
+#main {
+	min-width: 400px;
+	min-height: 400px;
+    width: auto;
+    background:#668163;   
+    text-align: justify;
+    display: block;
+    border-width: 5px;
+    border-style:solid;
+    border-color: #FFF
+}
+
+
+#footer {
+	display: block;
+    clear:both;
+    background:#c35645;
+	padding:10px;
+	height: 45px;
+}
+

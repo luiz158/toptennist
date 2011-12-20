@@ -5,27 +5,19 @@
 	xmlns:rich="http://richfaces.org/rich"
 	template="/template/logado.xhtml">
 
-	<h:outputStylesheet>
-        .pic {
-        margin-right: 2px;
-        }
-    </h:outputStylesheet>
-
 
 	<ui:define name="content">
 		<h:form prependId="false">
 			
-			<a4j:outputPanel ajaxRendered="true" layout="inline" >			
-				<rich:toolbar height="26" itemSeparator="grid" >
+				<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
 			        <rich:toolbarGroup>
 			        	<h:commandButton image="/images/sem_imagem.jpg" style="width: 10px;" action="#{perfilMB.update}"/>
 			        </rich:toolbarGroup>
-			    </rich:toolbar>			
-			</a4j:outputPanel>
+			    </rich:toolbar>	
 			
-			<br />
-			
-			 <rich:tabPanel switchType="client" >
+			<br clear="none"/>
+			<span style="display: block;">
+			 <rich:tabPanel switchType="client" style="width: 400px;">
         		<rich:tab header="#{messages['usuario.perfil.label']}">  
 			       
 			       <h:inputHidden id="id" value="#{perfilMB.bean.id}" />				
@@ -79,7 +71,7 @@
 			   </rich:tab>
 			   
 			</rich:tabPanel>
-				
+			</span>
 		</h:form>
 	</ui:define>
 </ui:composition>

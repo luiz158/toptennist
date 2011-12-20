@@ -1,78 +1,75 @@
 @CHARSET "UTF-8";
 
-body {
-	margin: 0;
-	padding: 0;
-	background: #ddd;
+container {
+    margin:0;
+    padding:0;
+    color:#000;
+    background:#fff;
 }
-	
-
 #container {
-	margin: 1em auto;
-	width: 980px;
-	background: #FFF;
+    background:#668163; 
+    display: block;
+    margin: 0 auto; /* centrar o layout horizontalmente */
+	width: auto; /* vamos utilizar auto ou qualquer percentagem, para garantir que utilizamos o tamanho da janela do browser automaticamente */
+	min-width: 760px; /* definimos uma largura mínima para o nosso container */
+	max-width: 90em; /* é prática comum utilizar valores em, de modo a que a largura do texto se mantenha constante às várias resoluções do ecrã*/
+	min-height: 400px; 
+	border-width: 5px;
+    border-style:solid;
+    border-color: #FFF;   
 }
-
 #header {
-	background: #1E1E6D;
-	height: 60px;
-	width:auto;	
+	height: 45px;
+    padding:10px;
+	background:#c35645;
 	display: block;
-	clear: both;
+}
+#menu {
+    float:left;
+    display: block;
+	width:200px;
+	min-height: 400px;
+	padding:10px;
+	border-right: 1px solid #FFF;
 }
 
-#mid {
-	height: 480px;
-	width:auto;
+#content {
+	margin: 5px 0px 5px 5px;
+	min-width: 400px;
+	min-height: 400px;
+    width: auto;   
+    text-align: justify;
+    display: block;
+}
+
+
+#footer {
+    clear:both;
+    background:#c35645;
+	padding:10px;
+	display: block;
 }
 
 #logo {
 	float: left;
-	height: 100px;
 	width: 165px;
 	vertical-align: middle;
 }
 
 #login {
 	float: right;
-	height: 100px;
 	text-align: left;
-	vertical-align: bottom;
-	display: inline;
-}
-
-#esquerda {
-	float: left;
-	display: block;
-	width: 165px;
-	height: 100%;
-	margin: 0;
-	background: #1E1FFF;
-	
-}
-
-#content {
-	float: left;
-	background: #FFF;
-	height: 100%;
-	float: left;	
-	color:#1E1E6D;
-	display: inline;
-}
-
-#footer {
-	clear: both;
-	background: #1E1E6D;
-	height: 60px;
-	text-align: center;
 	vertical-align: middle;
 }
 
-#toolbar {
-	height: 60px;
-	background: #1FFFFF;
+#toolbar{
+	padding: 5px;
+	min-width: 100px;
+	height: 30px;
+	text-align: center;
 }
 
-#body {
-	
-}
+
+h1 { font-size:22px; line-height:18px; margin-bottom:10px; }
+h2 { font-size:16px; line-height:18px; margin-bottom:10px;}
+h3 { font-size:14px; line-height:18px; margin-bottom:5px;}
