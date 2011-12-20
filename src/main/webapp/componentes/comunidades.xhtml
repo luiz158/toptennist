@@ -12,8 +12,10 @@
 			<a4j:repeat value="#{usuarioMB.comunidades}"
 				 id="list" var="matricula" >
 				 
-				<h:graphicImage value="/images/sem_imagem.jpg" width="10px" height="10px;" /> - 
-		        <h:outputText value="#{matricula.nome}" />
+				<h:graphicImage value="/images/icone/verificado.jpg" width="15px" height="15px;" 
+					title="Esta é uma comunidade verificada!"
+					alt="Esta é uma comunidade verificada!"/> - 
+		        <h:outputText value="#{matricula.nome}" /> 		        
 		        <br />
 		    </a4j:repeat> 
 			
