@@ -1,6 +1,5 @@
 package com.robsonximenes.toptennist.view;
 
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
@@ -22,7 +21,7 @@ public class ComunidadeMB {
 	@Inject @Logado
 	private Usuario logado;
 	
-	private Comunidade comunidade;
+	private Comunidade comunidade = new Comunidade();
 	
 	public String criarComunidade() {
 		comunidade = new Comunidade();

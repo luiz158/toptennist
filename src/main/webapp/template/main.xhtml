@@ -15,29 +15,37 @@
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 </h:head>
 <h:body id="corpo">
-	<div id="container">
-		<div id="header">
-			<ui:insert name="header" />
-		</div>
-		<div id="main">
-			<ui:insert name="no_menu">
-				<div id="menu"><ui:insert name="menu" /></div>
-			</ui:insert> 
-	        <div id="content">
-	        	<ui:insert name="content"> 
-	            	<div id="content-left">
-	            	</div>	            	
-	            </ui:insert> 
-	        </div> 
-		</div>
-		<div id="footer">
-			<ui:insert name="footer">
-					#{messages['main.footer.text']}
-			</ui:insert>
-		</div>
-	</div>
 	
-	 <rich:messages id="messages" globalOnly="true" ajaxRendered="true" />
+	<table id="container">
+		<tr>
+			<td colspan="2" id="header">
+				<ui:insert name="header">
+					insert header
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td id="menu">
+				<ui:insert name="menu">
+					insert menu
+				</ui:insert>				
+			</td>
+			<td id="content">
+				<ui:insert name="content"> 
+            	 	insert content            	
+            	</ui:insert> 
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" id="footer">
+				<ui:insert name="footer">
+					#{messages['main.footer.text']}
+				</ui:insert>
+			</td>
+		</tr>
+	</table>
+	
+	<rich:messages id="messages" globalOnly="true" ajaxRendered="true" />
 
 </h:body>
 </html>
