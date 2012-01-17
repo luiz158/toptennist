@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	>
+	
+	<h:form>
+		<div id="perfil" class="div_menu">
+			<a4j:mediaOutput id="fotoUsuario" element="img" 
+					cacheable="false" session="true"
+            		value="#{usuarioMB.imagem}" mimeType="image/jpeg" alt="#{usuarioMB.logado.nome}" width="90px" height="120px;" />
+			<h:panelGrid columns="1">
+				<h:commandLink value="Gerenciar" action="#{comunidadeMB.editar}">					
+						<f:param name="id" value="#{comunidadeMB.comunidade.id}" />
+					</h:commandLink>
+				<h:commandLink value="Membros"/>
+				<h:commandLink value="Torneios"  />
+			</h:panelGrid>
+		</div>
+	</h:form>
+
+</ui:composition>

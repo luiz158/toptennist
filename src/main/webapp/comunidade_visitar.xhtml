@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/template/logado.xhtml">
+
+		
+	<ui:define name="menu" >
+		<ui:include src="/componentes/perfil_comunidade.xhtml" />
+		<ui:include src="/componentes/comunidades.xhtml" />
+		<ui:include src="/componentes/amigos.xhtml" />	
+	</ui:define>	
+		
+	<ui:define name="content">
+		<h2><h:outputText value="#{comunidadeMB.comunidade.nome}"/></h2>
+		
+		<span>
+			<h:outputText value="#{comunidadeMB.comunidade.descricao}"/>
+		</span>
+		
+		<h:form>			    
+			<h:inputHidden id="id" value="#{comunidadeMB.comunidade.id}"  />
+			Exibir os botões: entrar/sair, convidar <br />
+			Exibir os dados da comunidade; <br />
+			Exibir a timeline: resultado de jogos, comentários dos participantes.		
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

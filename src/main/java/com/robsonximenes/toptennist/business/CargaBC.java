@@ -37,6 +37,7 @@ public class CargaBC {
 		logger.debug("Inserindo usuario ADM");		
 		Usuario userADM = new Usuario();
 		userADM.setEmail("ADM@gmail.com");
+		userADM.setNome("Administrador");
 		userADM.setEndereco(new Endereco());
 		userADM.getEndereco().setCep("04011060");
 		userADM.getEndereco().setComplemento("numero 228, ap 95");
@@ -55,7 +56,7 @@ public class CargaBC {
 		comunidade.setCriador(userADM);
 		comunidade.setDataCriacao(new Date());
 		comunidade.setDescricao("Comunidade de teste");
-		comunidade.setNome("Testando");
+		comunidade.setNome("Comunidade usr ADM");
 		comunidadeDAO.insert(comunidade);
 		
 		
@@ -79,11 +80,21 @@ public class CargaBC {
 		user.setIdolo("Agassi");
 		usuarioDAO.insert(user);
 		
-		logger.debug("Matriculando usuario em comunidade");
-		Matricula matricula = new Matricula();
-		matricula.setComunidade(comunidade);
-		matricula.setUsuario(user);
-		matricula.setDataCadastro(new Date());
+		
+		logger.debug("Criando uma comunidade");	
+		Comunidade comunidade2 = new Comunidade();
+		comunidade2.setCriador(user);
+		comunidade2.setDataCriacao(new Date());
+		comunidade2.setDescricao("Robgol Clube: criada para testes");
+		comunidade2.setNome("Robgol Clube");
+		comunidadeDAO.insert(comunidade2);
+		
+		
+//		logger.debug("Matriculando usuario em comunidade");
+//		Matricula matricula = new Matricula();
+//		matricula.setComunidade(comunidade2);
+//		matricula.setUsuario(user);
+//		matricula.setDataCadastro(new Date());
 //		user.getComunidades().add(matricula);
 //		usuarioDAO.update(user);
 		

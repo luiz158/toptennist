@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.event.FileUploadEvent;
@@ -16,6 +17,8 @@ import br.gov.frameworkdemoiselle.util.Faces;
 
 import com.robsonximenes.toptennist.business.UsuarioBC;
 import com.robsonximenes.toptennist.domain.Usuario;
+import com.robsonximenes.toptennist.domain.Usuario.Lateralidade;
+import com.robsonximenes.toptennist.domain.Usuario.Sexo;
 
 @ViewController
 @PreviousView("/home")
@@ -62,6 +65,23 @@ public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 		}
 	}
 	
+	public SelectItem[] getValuesSexo() {
+		SelectItem[] items = new SelectItem[Sexo.values().length];
+		int i = 0;
+		for (Sexo g : Sexo.values()) {
+			items[i++] = new SelectItem(g, g.name());
+		}
+		return items;
+	}
+	
+	public SelectItem[] getValuesLateralidade() {
+		SelectItem[] items = new SelectItem[Usuario.Lateralidade.values().length];
+		int i = 0;
+		for (Lateralidade g : Lateralidade.values()) {
+			items[i++] = new SelectItem(g, g.name());
+		}
+		return items;
+	}
 
 	
 

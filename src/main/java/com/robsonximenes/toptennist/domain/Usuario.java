@@ -1,7 +1,6 @@
 package com.robsonximenes.toptennist.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,14 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Usuario implements Serializable {
 
-	enum Sexo{MASCULINO, FEMININO};	
+	public enum Sexo{MASCULINO, FEMININO};	
 	
 	private static final long serialVersionUID = 1L;
 

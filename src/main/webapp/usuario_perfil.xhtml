@@ -9,29 +9,22 @@
 	<ui:define name="content">
 		<h:form prependId="false">
 			
+			<div align="center">
 				<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
 			        <rich:toolbarGroup>
-			        	<h:commandButton image="/images/sem_imagem.jpg" style="width: 10px;" action="#{perfilMB.update}"/>
+			        	<h:commandButton  value="#{messages['button.save']}" image="/images/icones/se_inscrever.jpg" 
+			        		style="width: 20px; height: 20px;" action="#{perfilMB.update}"/>
 			        </rich:toolbarGroup>
-			    </rich:toolbar>	
+			    </rich:toolbar>
+			</div>	
 			
 			<br clear="none"/>
 			<span style="display: block;">
 			 <rich:tabPanel id="tab" switchType="client" style="width: 90%;" >
-        		<rich:tab header="#{messages['usuario.perfil.label']}">  
-			       
-			       <h:inputHidden id="id" value="#{perfilMB.bean.id}" />				
+        		<rich:tab header="#{messages['usuario.perfil.label']}"> 
+			      	<h:inputHidden id="id" value="#{perfilMB.bean.id}" />				
 					<h:panelGrid id="fields" columns="3">					
-						<h:outputLabel value="#{messages['usuario.perfil.label.foto']}: " 
-							for="foto" styleClass="text-input" />
 							
-						<rich:fileUpload fileUploadListener="#{perfilMB.handleFileUpload}" id="foto" acceptedTypes="jpg, gif, png, bmp"
-			                ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
-			                <a4j:ajax event="uploadcomplete" execute="@none" render="fotoPerfil" />
-			            </rich:fileUpload>	
-						<p:graphicImage value="#{perfilMB.imagem}" id="fotoPerfil"
-							cache="false" height="90px" width="120px" />
-	
 						<h:outputLabel value="#{messages['usuario.perfil.label.email']}: " 
 							for="email" styleClass="text-input" />
 						<h:inputText id="email" value="#{perfilMB.bean.email}"
@@ -43,6 +36,29 @@
 						<h:inputSecret id="senha" value="#{perfilMB.bean.senha}"
 							title="#{messages['usuario.perfil.alt.senha']}" />
 						<p:message for="senha" />
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.nascimento']}: " 
+							for="nascimento" styleClass="text-input" />
+						<rich:calendar  id="nascimento" value="#{perfilMB.bean.dataNascimento}"
+							title="#{messages['usuario.perfil.alt.nascimento']}"
+                        	locale="#{calendarBean.locale}"
+                        	popup="true"
+                        	datePattern="dd/MM/yyyy"
+                        	showInput="true"
+                        	showApplyButton="false" 
+                        	cellWidth="24px" cellHeight="22px" style="width:200px"/>	
+							
+						<p:message for="nascimento" />
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.sexo']}: " 
+							for="sexo" styleClass="text-input" />
+						<h:selectOneMenu id="sexo" value="#{perfilMB.bean.sexo}"
+							title="#{messages['usuario.perfil.alt.sexo']}" >
+							  <f:selectItems value="#{perfilMB.valuesSexo}" />
+						</h:selectOneMenu>	
+						
+						<p:message for="sexo" />
+						
 					</h:panelGrid>
 					
 					<h2>Endereco</h2>
@@ -66,8 +82,60 @@
 						<p:message for="cep" />			
 					</h:panelGrid>
 			   </rich:tab>
-			   <rich:tab header="OUtra tab">
-			   	blblablab
+			   <rich:tab header="Caracteristicas">
+			   		<h:panelGrid id="fields_caracteristicas" columns="3">
+			   			<h:outputLabel value="#{messages['usuario.perfil.label.historia']}: " 
+									for="historia" styleClass="text-input" />
+						<h:inputTextarea id="historia" value="#{perfilMB.bean.historia}" 
+									title="#{messages['usuario.perfil.alt.historia']}" />
+						<p:message for="historia" />
+			   			
+			   			<h:outputLabel value="#{messages['usuario.perfil.label.lateralidade']}: " 
+									for="lateralidade" styleClass="text-input" />
+						<h:selectOneMenu id="lateralidade" value="#{perfilMB.bean.lateralidade}" 
+									title="#{messages['usuario.perfil.alt.lateralidade']}" >
+							  <f:selectItems value="#{perfilMB.valuesLateralidade}" />
+						</h:selectOneMenu>
+						<p:message for="lateralidade" />
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.altura']}: " 
+									for="altura" styleClass="text-input" />
+						<rich:inputNumberSpinner id="altura" value="#{perfilMB.bean.altura}" 
+									title="#{messages['usuario.perfil.alt.altura']}" minValue="1.00" maxValue="2.50" step="0.01"/>
+						<p:message for="altura" />	
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.peso']}: " 
+									for="peso" styleClass="text-input" />
+						<rich:inputNumberSpinner id="peso" value="#{perfilMB.bean.peso}" 
+									title="#{messages['usuario.perfil.alt.peso']}" step="0.01" />
+						<p:message for="peso" />	
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.idadeInicioTenis']}: " 
+									for="idadeInicioTenis" styleClass="text-input" />
+						<rich:inputNumberSpinner id="idadeInicioTenis" value="#{perfilMB.bean.idadeInicioTenis}" 
+									title="#{messages['usuario.perfil.alt.idadeInicioTenis']}" />
+						<p:message for="idadeInicioTenis" />	
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.clube']}: " 
+									for="clube" styleClass="text-input" />
+						<h:inputText id="clube" value="#{perfilMB.bean.clube}" 
+									title="#{messages['usuario.perfil.alt.clube']}" />
+						<p:message for="clube" />	
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.raquete']}: " 
+									for="raquete" styleClass="text-input" />
+						<h:inputText id="raquete" value="#{perfilMB.bean.raquete}" 
+									title="#{messages['usuario.perfil.alt.raquete']}" />
+						<p:message for="raquete" />	
+						
+						<h:outputLabel value="#{messages['usuario.perfil.label.idolo']}: " 
+									for="idolo" styleClass="text-input" />
+						<h:inputText id="idolo" value="#{perfilMB.bean.idolo}" 
+									title="#{messages['usuario.perfil.alt.idolo']}" />
+						<p:message for="idolo" />	
+						
+			   			
+			   		</h:panelGrid>
 			   </rich:tab>
 			   
 			</rich:tabPanel>

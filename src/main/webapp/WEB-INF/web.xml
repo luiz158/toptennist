@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  
-<servlet>
+  <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
@@ -18,18 +17,16 @@
     </web-resource-collection>
     <auth-constraint/>
   </security-constraint>
-  
   <context-param>
-  	<param-name>createTempFiles</param-name>
-  	<param-value>false</param-value>
+    <param-name>createTempFiles</param-name>
+    <param-value>false</param-value>
   </context-param>
   <context-param>
-  	<param-name>maxRequestSize</param-name>
-  	<param-value>10000</param-value>
+    <param-name>maxRequestSize</param-name>
+    <param-value>10000</param-value>
   </context-param>
   <context-param>
-   <param-name>org.richfaces.SKIN</param-name>
-   <param-value>robgol</param-value>
-</context-param>
-  
+    <param-name>org.richfaces.SKIN</param-name>
+    <param-value>robgol</param-value>
+  </context-param>
 </web-app>

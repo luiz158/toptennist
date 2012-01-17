@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/template/logado.xhtml">
+
+		
+	<ui:define name="content">
+		<h2>Cadastro de comunidade</h2>
+		<h:form>		
+		
+			<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
+		        <rich:toolbarGroup>
+		        	<h:commandButton value="Salvar" style="width: 10px;" action="#{comunidadeMB.criar}"/>
+		        </rich:toolbarGroup>
+		    </rich:toolbar>	
+		    
+			<h:inputHidden id="id" value="#{comunidadeMB.comunidade.id}"  />
+			
+			<h:panelGrid columns="2">
+				<h:panelGrid columns="3">
+					<h:outputLabel value="#{messages['comunidade.label.id']}: " 
+								for="id_" styleClass="text-input" />
+					<h:outputText id="id_" value="#{comunidadeMB.comunidade.id}" 
+								title="#{messages['comunidade.alt.id']}" />
+					<p:message for="id_" />
+				
+					<h:outputLabel value="#{messages['comunidade.label.nome']}: " 
+								for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{comunidadeMB.comunidade.nome}" 
+								title="#{messages['comunidade.alt.nome']}" />
+					<p:message for="nome" />
+					
+					<h:outputLabel value="#{messages['comunidade.label.descricao']}: " 
+								for="descricao" styleClass="text-input" />
+					<h:inputText id="descricao" value="#{comunidadeMB.comunidade.descricao}" 
+								title="#{messages['comunidade.alt.descricao']}" />
+					<p:message for="descricao" />			
+				</h:panelGrid>
+				
+				<h:panelGrid columns="3">			
+					<h:outputLabel value="#{messages['usuario.label.nome']}: " 
+							for="fundadornome" styleClass="text-input" />
+					<h:outputText id="fundadornome" value="#{comunidadeMB.comunidade.criador.nome}"
+							title="#{messages['usuario.alt.nome']}" />
+					<p:message for="fundadornome" />
+					
+					<h:outputLabel value="#{messages['usuario.label.email']}: " 
+							for="fundadoremail" styleClass="text-input" />
+					<h:outputText id="fundadoremail" value="#{comunidadeMB.comunidade.criador.email}"
+							title="#{messages['usuario.alt.email']}" />
+					<p:message for="fundadoremail" />		
+				</h:panelGrid>
+			</h:panelGrid>	
+			
+		
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
