@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Comunidade implements Serializable {
@@ -41,7 +42,7 @@ public class Comunidade implements Serializable {
 	@OneToMany
 	private List<Telefone> telefones;
 
-	@OneToMany(mappedBy = "pk.comunidade")
+	@OneToMany(mappedBy="comunidade", cascade=CascadeType.ALL)
 	private List<Matricula> atletas = new ArrayList<Matricula>();
 
 	
@@ -128,6 +129,15 @@ public class Comunidade implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 	
+	@Transient
+	public int getTotalAtletas() {
+		int t = 0;
+		List<Matricula> usuarios = getAtletas();
+		if(usuarios!=null) {
+			t = getAtletas().size();
+		}
+		return t;
+	}
 	
 
 }

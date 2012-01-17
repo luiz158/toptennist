@@ -9,21 +9,27 @@
 	<ui:define name="content">
 		<h:form prependId="false">
 			
-			<div align="center">
-				<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
-			        <rich:toolbarGroup>
-			        	<h:commandButton  value="#{messages['button.save']}" image="/images/icones/se_inscrever.jpg" 
-			        		style="width: 20px; height: 20px;" action="#{perfilMB.update}"/>
-			        </rich:toolbarGroup>
-			    </rich:toolbar>
-			</div>	
+			<h2>Editando perfil</h2>
+			
+			<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
+		        <rich:toolbarGroup>
+		        	<h:commandButton  value="#{messages['button.save']}" action="#{perfilMB.update}"/>
+		        </rich:toolbarGroup>
+		    </rich:toolbar>	
 			
 			<br clear="none"/>
 			<span style="display: block;">
 			 <rich:tabPanel id="tab" switchType="client" style="width: 90%;" >
         		<rich:tab header="#{messages['usuario.perfil.label']}"> 
 			      	<h:inputHidden id="id" value="#{perfilMB.bean.id}" />				
-					<h:panelGrid id="fields" columns="3">					
+					<h:panelGrid id="fields" columns="3">
+					
+						<h:outputLabel value="#{messages['usuario.perfil.label.nome']}: " 
+							for="nome" styleClass="text-input" />
+						<h:inputText id="nome" value="#{perfilMB.bean.nome}"
+							title="#{messages['usuario.perfil.alt.nome']}" />
+						<p:message for="nome" />
+										
 							
 						<h:outputLabel value="#{messages['usuario.perfil.label.email']}: " 
 							for="email" styleClass="text-input" />
@@ -86,7 +92,7 @@
 			   		<h:panelGrid id="fields_caracteristicas" columns="3">
 			   			<h:outputLabel value="#{messages['usuario.perfil.label.historia']}: " 
 									for="historia" styleClass="text-input" />
-						<h:inputTextarea id="historia" value="#{perfilMB.bean.historia}" 
+						<h:inputTextarea rows="3"  id="historia" value="#{perfilMB.bean.historia}" 
 									title="#{messages['usuario.perfil.alt.historia']}" />
 						<p:message for="historia" />
 			   			

@@ -1,6 +1,9 @@
 package com.robsonximenes.toptennist.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 
@@ -17,5 +20,11 @@ public class ComunidadeDAO extends JPACrud<Comunidade, Long> {
 	@Inject
 	@SuppressWarnings("unused")
 	private Logger logger;
+
+	public List<Comunidade> pesquisar(String texto) {
+		Query query = getEntityManager().createQuery("from Comunidade c where UPPER(c.nome) like :pnome order by c.nome");
+		query.setParameter("pnome", "%"+texto.toUpperCase()+"%"); 			
+		return query.getResultList();
+	}
 	
 }

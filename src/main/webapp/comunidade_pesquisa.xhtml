@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/template/logado.xhtml">
+
+		
+	<ui:define name="content">
+		<f:view>
+		<h:form>
+			<fieldset>
+				<legend>Pesquisar</legend>
+				<h:inputText value="#{comunidadeMB.texto}" />
+				<h:commandLink value="procurar" action="#{comunidadeMB.pesquisar}"/>
+			</fieldset>
+			<br />
+			
+		 	<a4j:outputPanel>
+     
+	        	<rich:dataGrid value="#{comunidadeMB.listaComunidades}" var="comunidade" columns="3" elements="6" >
+	            	<rich:panel bodyClass="pbody">
+	                	<f:facet name="header">
+	                		<h:commandLink action="#{comunidadeMB.visitar}" immediate="true">
+	                	    	<h:outputText value="#{comunidade.nome}" />
+	                	    	<f:param name="id" value="#{comunidade.id}"/>
+	                	    </h:commandLink>
+	                	</f:facet>
+	                	<h:panelGrid columns="2">
+		                    <h:outputText value="#{messages['comunidade.label.descricao']}: "  styleClass="label" />
+		                    <h:outputText value="#{comunidade.descricao}" />
+		                    <h:outputText value="Sede:" styleClass="label"></h:outputText>
+		                    <h:outputText value="??? Cidade / Estado ??? " />
+		                    <h:outputText value="Participantes:" styleClass="label"></h:outputText>
+		                    <h:outputText value="#{comunidade.totalAtletas}" />
+		                    <h:outputText value="Desde:" styleClass="label"></h:outputText>
+		                    <h:outputText value="#{comunidade.dataCriacao}" >
+		                    	<f:convertDateTime pattern="dd/MM/yyyy"/> 
+		                    </h:outputText>
+		                </h:panelGrid>
+	           		</rich:panel>
+		            <f:facet name="footer">
+		                <rich:dataScroller></rich:dataScroller>
+		            </f:facet>
+	        	</rich:dataGrid>
+	    	</a4j:outputPanel>      
+		
+		</h:form>
+		</f:view>
+	</ui:define>
+	
+</ui:composition>

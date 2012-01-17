@@ -12,9 +12,11 @@
 		
 			<rich:toolbar height="30px" width="200px" itemSeparator="grid" >
 		        <rich:toolbarGroup>
-		        	<h:commandButton style="width: 10px;" action="#{comunidadeMB.salvar}" value="Salvar"/>
+		        	<h:commandButton action="#{comunidadeMB.salvar}" value="Salvar"/>
 		        </rich:toolbarGroup>
 		    </rich:toolbar>	
+		    
+		    <br />
 		    
 		<h:inputHidden id="id" value="#{comunidadeMB.comunidade.id}"  />
 		

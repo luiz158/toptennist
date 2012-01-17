@@ -4,40 +4,64 @@ import java.util.Date;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+
+import org.hibernate.validator.util.privilegedactions.GetAnnotationParameter;
 
 @Entity
 @Table
-@AssociationOverrides(
-		{ @AssociationOverride(name = "pk.comunidade", joinColumns = @JoinColumn(name = "comunidade_id")),
-		@AssociationOverride(name = "pk.usuario", joinColumns = @JoinColumn(name = "usuario_id")) })
 public class Matricula {
 
-	@EmbeddedId
-	private MatriculaPK pk = new MatriculaPK();
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String codigo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;	
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="comunidade_id")
+    private Comunidade comunidade;
+	
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="usuario_id")
+    private Usuario usuario;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
 	public String getCodigo() {
 		return codigo;
 	}
-
 
 	
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-
+	
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
@@ -47,30 +71,25 @@ public class Matricula {
 		this.dataCadastro = dataCadastro;
 	}
 
-	@Transient
-    public Comunidade getComunidade() {
-        return getPk().getComunidade();
-    }
-
-    public void setComunidade(Comunidade comunidade) {
-        getPk().setComunidade(comunidade);
-    }
-
-    @Transient
-    public Usuario getUsuario() {
-        return getPk().getUsuario();
-    }
-
-    public void setUsuario(Usuario atleta) {
-        getPk().setUsuario(atleta);
-    }
-
-	public void setPk(MatriculaPK pk) {
-		this.pk = pk;
+	
+	public Comunidade getComunidade() {
+		return comunidade;
 	}
 
-	public MatriculaPK getPk() {
-		return pk;
+	
+	public void setComunidade(Comunidade comunidade) {
+		this.comunidade = comunidade;
 	}
+
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+       
 
 }

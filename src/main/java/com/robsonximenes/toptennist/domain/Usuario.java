@@ -1,6 +1,7 @@
 package com.robsonximenes.toptennist.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -79,8 +81,18 @@ public class Usuario implements Serializable {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] foto;
 
-//	@OneToMany(mappedBy = "pk.usuario")
-//	private List<Matricula> comunidades = new ArrayList<Matricula>();
+    @OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
+	private List<Matricula> comunidades = new ArrayList<Matricula>();
+
+    
+	public List<Matricula> getComunidades() {
+		return comunidades;
+	}
+
+	
+	public void setComunidades(List<Matricula> comunidades) {
+		this.comunidades = comunidades;
+	}
 
 	public Long getId() {
 		return id;

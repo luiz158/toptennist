@@ -5,6 +5,28 @@
 	xmlns:rich="http://richfaces.org/rich"
 	template="/template/logado.xhtml">
 
+	<ui:define name="menu" >
+		
+		<h:form>
+			<div id="perfil" class="div_menu">
+				<h:panelGrid columns="2" cellpadding="2">
+					<a4j:mediaOutput id="fotoUsuario" element="img" 
+						cacheable="false" session="true"
+	            		value="#{usuarioMB.imagem}" mimeType="image/jpeg" alt="#{usuarioMB.visitado.nome}" width="90px" height="120px;" />
+				
+				</h:panelGrid> 
+				<h:panelGrid columns="1">
+					<h:commandLink value="Adicionar/Remover" action="#{comunidadeMB.criarNovaComunidade}" />
+					<h:commandLink value="Enviar mensagem" action="#{comunidadeMB.criarNovaComunidade}" />
+					<h:commandLink value="Convidar" action="#{comunidadeMB.criarNovaComunidade}" />
+				</h:panelGrid>
+			</div>
+		</h:form>
+		
+		<ui:include src="/componentes/comunidades.xhtml" />
+		<ui:include src="/componentes/amigos.xhtml" />	
+	</ui:define>
+
 
 	<ui:define name="content">
 		<h:form prependId="false">
@@ -13,19 +35,66 @@
 					
 			<br clear="none"/>
 			
+			<fieldset title="Perfil">
+				<legend>Perfil</legend>
 			
-			<table>
-				<tr>
-					<td>Nome:</td>
-					<td><h:outputText value="#{usuarioMB.visitado.nome}"/></td>
-				</tr>
-				<tr>
-					<td>Nome:</td>
-					<td><h:outputText value="#{usuarioMB.visitado.nome}"/></td>
-				</tr>		
-			</table>
+				<table>
+					<tr>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.nome']}"/>: </td>
+						<td width="200px;"><h:outputText value="#{usuarioMB.visitado.nome}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.sexo']}"/>: </td>
+						<td width="100px;"><h:outputText value="#{usuarioMB.visitado.sexo}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.idadeInicioTenis']}"/>: </td>
+						<td width="100px;"><h:outputText value="#{usuarioMB.visitado.idadeInicioTenis}"/></td>
+					</tr>	
+					<tr>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.historia']}"/>: </td>
+						<td colspan="5"><h:outputText value="#{usuarioMB.visitado.historia}"/></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.lateralidade']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.lateralidade}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.altura']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.altura}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.peso']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.peso}"/></td>
+					</tr>	
+					<tr>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.clube']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.clube}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.raquete']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.raquete}"/></td>
+						<td><h:outputLabel value="#{messages['usuario.perfil.label.idolo']}"/>: </td>
+						<td><h:outputText value="#{usuarioMB.visitado.idolo}"/></td>
+					</tr>
+		
+							
+				</table>
 			
-			completar os campos.....
+			</fieldset>
+						
+			<fieldset title="Torneios">
+				<legend>Torneios</legend>
+				listar ultimos 5 torneios em ordem cronológica inversa, indicando: categoria, rodada e status;<br />
+				Exemplo:<br />
+				<a>Torneio X</a>: 1Classe - Quartas - em progresso; <br />
+				<a>Torneio y</a>: 1Classe - Oitavas - finalizado; <br />
+				<h:commandLink value="ver todos">
+					<f:param name="usuario_id" value="#{usuarioMB.visitado.id}" />
+				</h:commandLink>
+			</fieldset>
+					
+			<fieldset title="Comunidades">
+				<legend>Comunidades</legend>
+				listar As comunidades que eles participa; colocar scroll<br />
+				<a4j:repeat value="#{usuarioMB.comunidades}" id="list" var="comunidade" >				  
+					<h:commandLink action="#{comunidadeMB.visitar}" >
+						<f:param name="id" value="#{comunidade.id}"/>
+		        		<h:outputText value="#{comunidade.nome}" />
+		        	</h:commandLink>
+					: <h:outputText value="#{comunidade.descricao}" /> <br />
+				</a4j:repeat>
+			</fieldset>
 			
 		</h:form>
 	</ui:define>
