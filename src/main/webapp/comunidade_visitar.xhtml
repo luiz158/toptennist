@@ -29,9 +29,41 @@
 		        </rich:toolbarGroup>
 		    </rich:toolbar>	
 			
-			Exibir os botões: entrar/sair, convidar <br />
-			Exibir os dados da comunidade; <br />
-			Exibir a timeline: resultado de jogos, comentários dos participantes.		
+			<br />
+			<br />
+			
+			Exibir a timeline: resultado de jogos, comentários dos participantes.	
+			<br />
+			<rich:panel style="width: 600px;">
+				<f:facet name="header">Resultado: Torneio X - Categoria A</f:facet>
+				<table border="1" cellspacing="3" >
+					<tr>
+						<td>6</td>
+						<td>6</td>
+						<td>
+							<b>
+								<h:commandLink value="#{usuarioMB.logado.nome}" action="/usuario_perfil.jsf">					
+									<f:param name="id" value="#{usuarioMB.logado.id}" />
+								</h:commandLink>
+							</b>
+						</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>3</td>
+						<td><a>Roger Federer</a></td>
+					</tr>
+				</table>				
+			</rich:panel>
+			<br />
+			<rich:panel style="width: 600px;">
+				<f:facet name="header">
+								<h:commandLink value="#{usuarioMB.logado.nome}" action="/usuario_perfil.jsf">					
+									<f:param name="id" value="#{usuarioMB.logado.id}" />
+								</h:commandLink>
+				</f:facet>
+				Alguém sabe me dizer se já está tendo jogo da primeira classe???
+			</rich:panel>	
 		</h:form>
 	</ui:define>
 	

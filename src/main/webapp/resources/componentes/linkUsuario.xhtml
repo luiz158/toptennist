@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+   xmlns:cc="http://java.sun.com/jsf/composite"  
+   xmlns:h="http://java.sun.com/jsf/html"  
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">  
+  
+ <cc:interface>  
+     <cc:attribute name="usuario" required="true" />
+ </cc:interface>  
+  
+ <cc:implementation>  
+     <h:form>   
+		<h:commandLink value="#{cc.attrs.usuario.nome}" action="/usuario_perfil.jsf">					
+			<f:param name="id" value="#{cc.attrs.usuario.id}" />
+		</h:commandLink> 
+	</h:form>
+ </cc:implementation>  
+</html>

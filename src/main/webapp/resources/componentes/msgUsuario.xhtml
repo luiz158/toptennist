@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+   	xmlns:cc="http://java.sun.com/jsf/composite"  
+   	xmlns:h="http://java.sun.com/jsf/html"  
+   	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:comp="http://java.sun.com/jsf/composite/componentes">  
+  
+ <cc:interface>  
+     <cc:attribute name="nomeBotao" />
+ </cc:interface>  
+  
+ <cc:implementation>  
+     <h:form>   
+		<rich:panel style="width: 600px;">
+			<div class="falou">
+				<comp:linkUsuario usuario="#{usuarioMB.logado}" />				
+				<span class="rt">
+					<img src="/images/icone/bolinha.jpg" style="vertical-align:-2px; width:12px;" />
+					 por <a href="/usuario/cynara">guga</a>
+				</span>					
+				<br/>
+				Visitem este site que ele é muito bom! Tenho um escritor que joga muito! Sabe o que fala! Eu recomendo mesmo!!!!!!!
+				<a href="http://tenisbaiano.com" target="_blank">http://www.tenisbaiano.com</a>
+			</div>
+			<div class="meta">Há 16 dias 					
+				<a href="#topo" title="Responder">comentar</a>
+			</div>
+		</rich:panel>
+	</h:form>
+ </cc:implementation>  
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+   xmlns:cc="http://java.sun.com/jsf/composite"  
+   xmlns:h="http://java.sun.com/jsf/html"  
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:comp="http://java.sun.com/jsf/composite/componentes">  
+  
+ <cc:interface>  
+     <cc:attribute name="nomeBotao" />
+ </cc:interface>  
+  
+ <cc:implementation>  
+     <h:form>   
+		<rich:panel style="width: 600px;">
+			<div class="falou">
+				<h:graphicImage url="/images/icone/trofeu.jpg" style="vertical-align:-2px; width:12px;" />
+				Resultado de jogo tornerio <a href="/torneio/x">Australia Open</a>	
+				<br/>				
+				<comp:linkUsuario usuario="#{usuarioMB.logado}" />				 
+				 venceu 
+				<comp:linkUsuario usuario="#{usuarioMB.logado}" />
+				 por 6x3; 7x5; 6x4
+			</div>
+			<div class="meta">Há 16 dias 					
+				<a href="#topo" title="Responder">comentar</a>
+			</div>
+		</rich:panel>
+	</h:form>
+ </cc:implementation>  
+</html>
