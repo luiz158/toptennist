@@ -6,6 +6,6 @@
            http://jboss.org/schema/weld/beans http://jboss.org/schema/weld/beans_1_1.xsd">
 	<alternatives>
 		<class>br.gov.frameworkdemoiselle.transaction.JPATransaction</class>
-		<!--<class>br.gov.frameworkdemoiselle.transaction.JTATransaction</class>-->
+		<class>com.robsonximenes.toptennist.security.Autenticador</class>
 	</alternatives>
 </beans>

@@ -10,9 +10,7 @@
 		<h:form>
 			<div id="perfil" class="div_menu">
 				<h:panelGrid columns="2" cellpadding="2">
-					<a4j:mediaOutput id="fotoUsuario" element="img" 
-						cacheable="false" session="true"
-	            		value="#{usuarioMB.imagem}" mimeType="image/jpeg" alt="#{usuarioMB.visitado.nome}" width="90px" height="120px;" />
+					<h:graphicImage url="/images/sem_imagem.jpg" width="75px" height="100px;" />
 				
 				</h:panelGrid> 
 				<h:panelGrid columns="1">
@@ -87,12 +85,12 @@
 			<fieldset title="Comunidades">
 				<legend>Comunidades</legend>
 				listar As comunidades que eles participa; colocar scroll<br />
-				<a4j:repeat value="#{usuarioMB.comunidades}" id="list" var="comunidade" >				  
+				<a4j:repeat value="#{usuarioMB.visitado.comunidades}" id="list" var="matricula" >				  
 					<h:commandLink action="#{comunidadeMB.visitar}" >
-						<f:param name="id" value="#{comunidade.id}"/>
-		        		<h:outputText value="#{comunidade.nome}" />
+						<f:param name="id" value="#{matricula.comunidade.id}"/>
+		        		<h:outputText value="#{matricula.comunidade.nome}" />
 		        	</h:commandLink>
-					: <h:outputText value="#{comunidade.descricao}" /> <br />
+					: <h:outputText value="#{matricula.comunidade.descricao}" /> <br />
 				</a4j:repeat>
 			</fieldset>
 			

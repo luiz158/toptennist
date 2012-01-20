@@ -1,6 +1,8 @@
 package com.robsonximenes.toptennist.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -9,6 +11,8 @@ import org.slf4j.Logger;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
+import com.robsonximenes.toptennist.domain.Comunidade;
+import com.robsonximenes.toptennist.domain.Matricula;
 import com.robsonximenes.toptennist.domain.Usuario;
 import com.robsonximenes.toptennist.persistence.UsuarioDAO;
 
@@ -41,12 +45,12 @@ public class UsuarioBC extends DelegateCrud<Usuario,Long,UsuarioDAO> implements 
 		usuarioDAO.update(usuario);
 	}
 
-	public Usuario verificar(Usuario bean) {
-		logger.debug("Logando o usuario: "+bean.getEmail());
-		Usuario logado = usuarioDAO.verificar(bean);
-		logger.debug("Encontrado o usuario com ID:"+logado.getId());
-		return logado;
+	public Boolean verificar(String email, String senha) {
+		return usuarioDAO.verificarLogin(email, senha);
 	}
-	
+
+	public Usuario carregarPorEmail(String email) {
+		return usuarioDAO.carregarPorEmail(email);
+	}
 	
 }

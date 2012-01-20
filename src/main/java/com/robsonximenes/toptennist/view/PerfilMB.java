@@ -21,14 +21,11 @@ import com.robsonximenes.toptennist.domain.Usuario.Lateralidade;
 import com.robsonximenes.toptennist.domain.Usuario.Sexo;
 
 @ViewController
-@PreviousView("/home")
+@PreviousView("/logado/home")
 @SessionScoped
 public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject
-	private UsuarioMB usuarioMB;
 
 	@Inject 
 	private UsuarioBC bc;
@@ -50,9 +47,6 @@ public class PerfilMB extends AbstractEditPageBean<Usuario,Long> {
 	@Override
 	public String update() {
 		bc.atualizar(getBean());
-		if(usuarioMB.getLogado().getId()==getBean().getId()) {
-			usuarioMB.setLogado(getBean());
-		}
 		return getPreviousView();
 	}
 

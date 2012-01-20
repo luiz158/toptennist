@@ -9,7 +9,7 @@
 	<ui:define name="header">
 		<div id="logo">
 			<a href="home.jsf">
-				<img src="images/logo.png" border="0" height="50px" />
+				<h:graphicImage url="/images/logo.png" border="0" height="50px" />
 			</a>
 		</div>
 		<div id="login">
@@ -22,11 +22,11 @@
 				
 					<h:outputText value="  " />
 				
-					<h:inputText id="login" value="#{usuarioMB.logado.email }"  size="20"/>
+					<h:inputText id="login" value="#{credential.login}"  size="20"/>
 				
-					<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}" size="20"/>
+					<h:inputSecret id="senha" value="#{credential.senha}" size="20"/>
 				
-					<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
+					<h:commandButton action="#{securityContext.login}" value="Logar" />
 				</h:panelGrid>
 
 				<rich:panelMenu rendered="#{usuarioMB.logado.id != null}" 

@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Usuario implements Serializable {
@@ -35,7 +36,7 @@ public class Usuario implements Serializable {
 	@Column
 	private String senha;
 
-	@Column
+	@Column(unique=true)
 	private String email;
 	
 	@Column

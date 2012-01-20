@@ -2,6 +2,7 @@ package com.robsonximenes.toptennist.business;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,7 +20,6 @@ import com.robsonximenes.toptennist.domain.Usuario;
 import com.robsonximenes.toptennist.domain.Usuario.Lateralidade;
 import com.robsonximenes.toptennist.domain.Usuario.Sexo;
 import com.robsonximenes.toptennist.persistence.ComunidadeDAO;
-import com.robsonximenes.toptennist.persistence.MatriculaDAO;
 import com.robsonximenes.toptennist.persistence.UsuarioDAO;
 
 @BusinessController
@@ -57,12 +57,71 @@ public class CargaBC {
 		usuarioDAO.insert(userADM);
 		
 		logger.debug("Inserindo usuario qualquer");		
-		criarUsuarios();		
+		List<Usuario> usuarios = criarUsuarios();		
 		
+		criandoComunidadeMisere();
+		
+		
+		logger.debug("Criando comunidades de exemplo;");
+		List<Comunidade> comunidades = criarComunidades(userADM);
+		
+		logger.debug("Matriculando os usuarios");
+		matricular(usuarios,comunidades);
+		logger.debug("MODELAGEM OK!");
+		
+	}
+
+
+	/**
+	 * 
+	 */
+	private void criandoComunidadeMisere() {
 		logger.debug("Inserindo usuario");		
+		Usuario user = criarAtleta("Robson Ximenes");		
+		usuarioDAO.insert(user);		
+		
+		logger.debug("Criando uma comunidade");	
+		Comunidade comunidade = new Comunidade();
+		comunidade.setCriador(user);
+		comunidade.setDataCriacao(new Date());
+		comunidade.setDescricao("Associação dos maiores tenistas do mundo.");
+		comunidade.setNome("Miserê Tênis Clube");
+		comunidadeDAO.insert(comunidade);
+		
+		Matricula matricula = new Matricula();
+		matricula.setComunidade(comunidade);
+		matricula.setUsuario(user);
+		matricula.setDataCadastro(new Date());
+		user.getComunidades().add(matricula);
+		matriculaBC.insert(matricula);
+		
+		List<Usuario> doidos = new ArrayList<Usuario>();
+		doidos.add(criarAtleta("Rafael Nadal"));
+		doidos.add(criarAtleta("Roger Federer"));
+		doidos.add(criarAtleta("Novac Djocovik"));
+		doidos.add(criarAtleta("Leytom Hewitt"));
+		doidos.add(criarAtleta("Andy Roddick"));
+		doidos.add(criarAtleta("Ferrero"));
+		doidos.add(criarAtleta("Gilis Simon"));
+		doidos.add(criarAtleta("Guga"));
+		doidos.add(criarAtleta("Monfills"));
+		
+		
+		for (Usuario doido : doidos) {
+			Matricula m = new Matricula();
+			m.setComunidade(comunidade);
+			m.setUsuario(doido);
+			m.setDataCadastro(new Date());
+			user.getComunidades().add(m);
+			matriculaBC.insert(m);
+		}
+		
+	}
+
+	private Usuario criarAtleta(String nome) {
 		Usuario user = new Usuario();
-		user.setNome("Robson Saraiva Ximenes");
-		user.setEmail("robsonximenes@gmail.com");	
+		user.setNome(nome);
+		user.setEmail(nome+"@gmail.com");	
 		user.setEndereco(new Endereco());
 		user.getEndereco().setCep("04011060");
 		user.getEndereco().setComplemento("numero 228, ap 95");
@@ -75,45 +134,36 @@ public class CargaBC {
 		user.getTelefones().add(t);	
 		user.setAltura(1.75);
 		user.setPeso(80.0);
-		user.setClube("Costa verde");
-		user.setHistoria("blablablabal blabalbalba blablabalba blababalba");
-		user.setIdolo("André Agassi");
+		user.setClube("ATP");
+		user.setHistoria("sem historia");
+		user.setIdolo("Robson Ximenes");
 		user.setSexo(Sexo.MASCULINO);
 		user.setLateralidade(Lateralidade.CANHOTO);
-		
 		usuarioDAO.insert(user);
-		
-		
-		logger.debug("Criando uma comunidade");	
-		Comunidade comunidade2 = new Comunidade();
-		comunidade2.setCriador(user);
-		comunidade2.setDataCriacao(new Date());
-		comunidade2.setDescricao("Robgol Clube: criada para testes");
-		comunidade2.setNome("Robgol Clube");
-		comunidadeDAO.insert(comunidade2);
-		
-		
-		logger.debug("Matriculando usuario em comunidade");
-		Matricula matricula = new Matricula();
-		matricula.setComunidade(comunidade2);
-		matricula.setUsuario(user);
-		matricula.setDataCadastro(new Date());
-		user.getComunidades().add(matricula);
-		matriculaBC.insert(matricula);
-		
-		
-		logger.debug("Criando comunidades de exemplo;");
-		criarComunidades(userADM);
-		
-		logger.debug("MODELAGEM OK!");
-		
+		return user;
+	}
+
+	private void matricular(List<Usuario> usuarios, List<Comunidade> comunidades) {
+		for (Comunidade comunidade : comunidades) {
+			Matricula m = new Matricula();
+			m.setComunidade(comunidade);
+			m.setUsuario(usuarios.get(0));
+			matriculaBC.insert(m);
+			
+			m = new Matricula();
+			m.setComunidade(comunidade);
+			m.setUsuario(usuarios.get(1));
+			matriculaBC.insert(m);
+		}
 	}
 
 
 	/**
+	 * @return 
 	 * 
 	 */
-	private void criarUsuarios() {
+	private List<Usuario> criarUsuarios() {
+		List<Usuario> lista = new ArrayList<Usuario>();
 		for (int i = 0; i < 10; i++) {
 			Usuario u = new Usuario();
 			u.setNome("user"+(i+1));
@@ -136,11 +186,14 @@ public class CargaBC {
 			u.setSexo(Sexo.MASCULINO);
 			u.setLateralidade(Lateralidade.DESTRO);
 			usuarioDAO.insert(u);
+			lista.add(u);
 		}
+		return lista;
 	}
 	
 	
-	private void criarComunidades(Usuario user) {
+	private List<Comunidade> criarComunidades(Usuario user) {
+		List<Comunidade> lista = new ArrayList<Comunidade>();
 		for (int i = 0; i < 10; i++) {
 			Comunidade comunidade = new Comunidade();
 			comunidade.setCriador(user);
@@ -148,7 +201,9 @@ public class CargaBC {
 			comunidade.setNome("Comunidade "+(i+1));
 			comunidade.setDescricao("Descricao da comunidade :"+comunidade.getNome());			
 			comunidadeDAO.insert(comunidade);
+			lista.add(comunidade);
 		}
+		return lista;
 	}
 	
 }

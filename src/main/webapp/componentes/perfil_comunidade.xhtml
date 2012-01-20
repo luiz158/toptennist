@@ -7,9 +7,7 @@
 	
 	<h:form>
 		<div id="perfil" class="div_menu">
-			<a4j:mediaOutput id="fotoUsuario" element="img" 
-					cacheable="false" session="true"
-            		value="#{usuarioMB.imagem}" mimeType="image/jpeg" alt="#{usuarioMB.logado.nome}" width="90px" height="120px;" />
+            <h:graphicImage url="/images/sem_imagem.jpg" width="75px" height="100px;" />
 			<h:panelGrid columns="1">
 				<h:commandLink value="Gerenciar" action="#{comunidadeMB.editar}">					
 						<f:param name="id" value="#{comunidadeMB.comunidade.id}" />

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.Name;
@@ -51,7 +50,7 @@ public class ComunidadeMB implements Serializable {
 		
 		listaComunidades =  bc.pesquisar(getTexto());
 		
-		return "/comunidade_pesquisa";
+		return "/logado/comunidade_pesquisa";
 	}
 	
 
@@ -60,12 +59,12 @@ public class ComunidadeMB implements Serializable {
 		comunidade.setId(null);
 		comunidade.setCriador(logado);
 		comunidade.setNome("Comunidade de " + comunidade.getCriador().getNome());
-		return "/comunidade_criar";
+		return "/logado/comunidade_criar";
 	}
 
 	public String criar() {
 		bc.insert(comunidade);
-		return "/comunidade_editar";
+		return "/logado/comunidade_editar";
 	}
 	
 	public void salvar() {
@@ -79,18 +78,18 @@ public class ComunidadeMB implements Serializable {
 		matricula.setUsuario(logado);
 		matricula.setDataCadastro(new Date());
 		matriculaBC.insert(matricula);
-		return null;
+		return "/logado/comunidade_visitar";
 	}
 
 
 	public String gerenciar() {
 		carregarComunidade();
-		return "/comunidade_editar";		
+		return "/logado/comunidade_editar";		
 	}
 
 	public String visitar() {
 		carregarComunidade();
-		return "/comunidade_visitar";		
+		return "/logado/comunidade_visitar";		
 	}
 	
 	/**

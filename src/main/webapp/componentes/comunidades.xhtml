@@ -9,7 +9,7 @@
 		<div id="comunidades" class="div_menu">
 			<h3>Comunidades</h3>
 			
-			<a4j:repeat value="#{usuarioMB.logado.comunidades}"
+			<a4j:repeat value="#{homeMB.usuario.comunidades}"
 				 id="list" var="matricula" >
 				 
 				<h:graphicImage url="/images/icone/verificado.jpg" width="15px" height="15px;" 
@@ -20,8 +20,8 @@
 		        	<h:outputText value="#{matricula.comunidade.nome}" />
 		        </h:commandLink>
 		        
-		        <h:commandButton value=" Editar" action="#{comunidadeMB.gerenciar}"  rendered="#{matricula.comunidade.criador.id == usuarioMB.logado.id}">
-					<f:param name="id" value="#{matricula.id}"/>
+		        <h:commandButton value=" Editar" action="#{comunidadeMB.gerenciar}"  rendered="#{comunidade.criador.id == usuarioMB.logado.id}">
+					<f:param name="id" value="#{matricula.comunidade.id}"/>
 		        </h:commandButton>
 		         		        
 		        <br />

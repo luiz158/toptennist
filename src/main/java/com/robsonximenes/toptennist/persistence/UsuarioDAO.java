@@ -22,16 +22,28 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 	@SuppressWarnings("unused")
 	private Logger logger;
 
-	public Usuario verificar(Usuario usuario) {
+	public Boolean verificarLogin(String email, String senha) {
 		Query query = getEntityManager().createQuery("from Usuario u where u.email = :pEmail and u.senha = :pSenha");
-		query.setParameter("pEmail", usuario.getEmail());
-		query.setParameter("pSenha", usuario.getSenha());
+		query.setParameter("pEmail", email);
+		query.setParameter("pSenha", senha);
 		List<Usuario> result = query.getResultList();		
+		Boolean identificado = false;
 		
-		if(result.isEmpty())
-			throw new FalhaNoLoginException();
+		if(result.size()==1)
+			identificado = true;
 		
-		usuario = result.get(0);
+		return identificado;
+	}
+
+	public Usuario carregarPorEmail(String email) {
+		Query query = getEntityManager().createQuery("from Usuario u where u.email = :pEmail");
+		query.setParameter("pEmail", email);
+		List<Usuario> result = query.getResultList();		
+		Usuario usuario = null;
+		
+		if(!result.isEmpty())
+			usuario = result.get(0);
+		
 		return usuario;
 	}
 

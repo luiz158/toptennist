@@ -29,11 +29,11 @@
 					
 						<h:outputText value="  " />
 					
-						<h:inputText id="login" value="#{usuarioMB.logado.email }"  size="20"/>
+						<h:inputText id="login" value="#{credential.login}"  size="20"/>
 					
-						<h:inputSecret id="senha" value="#{usuarioMB.logado.senha}" size="20"/>
+						<h:inputSecret id="senha" value="#{credential.senha}" size="20"/>
 					
-						<h:commandButton action="#{usuarioMB.logar}" value="Logar" />
+						<h:commandButton action="#{securityContext.login}" value="Logar" />
 					</h:panelGrid>
 				</h:form>
 			</div>

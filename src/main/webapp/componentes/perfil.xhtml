@@ -8,20 +8,18 @@
 	<h:form>
 		<div id="perfil" class="div_menu">
 			<h:panelGrid columns="2" cellpadding="2">
-				<a4j:mediaOutput id="fotoUsuario" element="img" 
-					cacheable="false" session="true"
-            		value="#{usuarioMB.imagem}" mimeType="image/jpeg" alt="#{usuarioMB.logado.nome}" width="90px" height="120px;" />
+				<h:graphicImage url="/images/sem_imagem.jpg" width="75px" height="100px;" />
 				<h:panelGrid>
-					<h:outputText value="#{usuarioMB.logado.nome}" />
-					<h:commandLink value="Perfil" action="/usuario_perfil.jsf">					
-						<f:param name="id" value="#{usuarioMB.logado.id}" />
+					<h:outputText value="#{homeMB.usuario.nome}" />
+					<h:commandLink value="Perfil" action="/logado/usuario_perfil.jsf">					
+						<f:param name="id" value="#{homeMB.usuario.id}" />
 					</h:commandLink>
 				</h:panelGrid>
 			</h:panelGrid> 
 			<h:panelGrid columns="1">
-				<h:commandLink value="Histórico" action="#{comunidadeMB.criarNovaComunidade}" />
-				<h:commandLink value="Próximos jogos" action="#{comunidadeMB.criarNovaComunidade}" />
-				<h:commandLink value="Procurar torneios" action="#{comunidadeMB.criarNovaComunidade}" />
+				<h:commandLink value="Histórico" action="#{comunidadeMB.criarComunidade}" />
+				<h:commandLink value="Próximos jogos" action="#{comunidadeMB.criarComunidade}" />
+				<h:commandLink value="Procurar torneios" action="#{comunidadeMB.criarComunidade}" />
 			</h:panelGrid>
 		</div>
 	</h:form>
